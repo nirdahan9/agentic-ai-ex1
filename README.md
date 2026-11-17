@@ -7,7 +7,7 @@ Assignment 1, AI Systems course. This is a Gradio chat that represents Nir Dahan
 - [x] Part A: background sources and the Actor
 - [x] Part B: evaluator with structured output
 - [x] Part C: generation, evaluation and correction loop
-- [ ] Part D: experiments and results
+- [x] Part D: experiments and results — see [results/part_d_results.md](results/part_d_results.md)
 - [ ] Part E: submission materials and report
 
 ## Models
@@ -28,7 +28,9 @@ uv venv --python 3.12
 uv pip install -r requirements.txt
 cp .env.example .env        # then fill in OPENAI_API_KEY
 .venv/bin/python app.py     # opens the chat at http://127.0.0.1:7860
-.venv/bin/python -m pytest -q
+.venv/bin/python -m pytest -q           # unit tests (no API calls)
+.venv/bin/python run_scenarios.py       # Part D: the five scenarios (real API calls), output in results/part_d/
+.venv/bin/python run_scenarios.py 4     # or a single scenario
 ```
 
 ## Project layout
@@ -50,6 +52,8 @@ cp .env.example .env        # then fill in OPENAI_API_KEY
 | `docs/architecture.png` / `.svg` / `.md` | Architecture diagram: sources, chat UI and history, Actor, Evaluator, evaluation result, feedback arc, the three exit paths, and the check log |
 | `app.py` | Gradio UI in Hebrew (right-to-left). It shows only the user's messages and the final answers. The scenario ID for the log is under "הגדרות בדיקה" |
 | `tests/` | pytest checks that make no API calls |
+| `run_scenarios.py` | Runs the five Part D scenarios through the same loop as the chat. Scenario 5 uses a mock evaluator that always rejects (control-flow test) |
+| `results/part_d_results.md`, `results/part_d/` | Part D results: per-scenario input, attempts log and output (JSON), the execution log, and whether each matched expectation |
 | `results/part_b_manual_check.md` | Manual check of approved answers against the sources, and the evaluator limitations found |
 | `results/part_b_evaluator_runs.json`, `results/part_b_controlled_tests.json` | Raw evaluator outputs for the Actor answers and for the hand-written controlled cases |
 

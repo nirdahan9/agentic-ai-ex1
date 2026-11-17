@@ -139,7 +139,6 @@ def test_history_keeps_approved_answers_and_drops_unanswered_questions(notice):
     ]
 
 
-
 def test_status_messages_are_hebrew_even_for_english_questions():
     out = handle_question("Where do you work?", [], "BG", "S", actor=FakeActor(),
                           evaluator=FakeEvaluator(False, False, False))

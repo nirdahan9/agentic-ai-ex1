@@ -68,6 +68,8 @@ Both are realistic, subtle errors: one wrong rank, one wrong word. They are the 
 3. **Imprecise feedback wording.** The military rejection was correct, but its feedback translated "אלוף־משנה" as "Lieutenant Colonel". It is actually Colonel. The decision was right and the feedback was still slightly wrong, so feedback is not automatically reliable either.
 4. **Unhelpful offers are not flagged.** The rejected DerbyUp answer offered to "tell more about my role or how it worked technically" while also saying the sources have no such details. The evaluator did not mention this contradiction. It rejected the answer for another reason.
 
+5. **A stretched claim about studies was approved.** This was seen later, during Part C testing. For "מה אתה לומד?" ("What do you study?"), the Actor wrote that its studies "focus on" data structures, algorithms, systems programming, machine learning and Full-Stack. The source says "strong foundations in" those areas. It does not say the studies focus on them. The evaluator approved the answer, which is the same kind of small stretch as limitation 1.
+
 ## Controlled evaluator tests (hand-written candidate answers)
 
 These tests are separate from the Actor runs above. Each candidate answer was written by hand to test one criterion. Raw output: [`part_b_controlled_tests.json`](part_b_controlled_tests.json). I ran the set twice and got the same decisions both times.

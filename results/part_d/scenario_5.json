@@ -1,0 +1,66 @@
+{
+  "scenario": 5,
+  "scenario_id": "scenario-5",
+  "title": "Exhausting the attempts",
+  "kind": "MOCK (control-flow test)",
+  "actor_model": "gpt-5.4-mini-2026-03-17",
+  "evaluator": "MOCK evaluator (control-flow test): rejects every attempt",
+  "run_at": "2026-11-17T12:37:57.735081+00:00",
+  "expected": "Three attempts, all rejected, then a stop after the third and the 'no approved answer' message. No rejected answer is shown.",
+  "turns": [
+    {
+      "input": {
+        "question": "מה GroupShield?",
+        "history_sent_to_models": []
+      },
+      "attempts_log": [
+        {
+          "attempt": 1,
+          "candidate_source": "actor",
+          "candidate": "GroupShield הוא בוט שבניתי שמנטר התנהגות ושפה לא הולמת בקבוצות. מעבר לזה, אין לי במקורות פירוט נוסף על איך הוא עובד או באילו פלטפורמות הוא פועל.",
+          "evaluation": {
+            "completed": true,
+            "is_acceptable": false,
+            "feedback": "MOCK REJECTION (control-flow test): this mock evaluator rejects every attempt, regardless of content, to test the attempt limit."
+          }
+        },
+        {
+          "attempt": 2,
+          "candidate_source": "actor_correction",
+          "candidate": "GroupShield הוא בוט שבניתי שמנטר התנהגות ושפה לא הולמת בקבוצות. מעבר לזה, אין לי במקורות פירוט נוסף על אופן הפעולה שלו או על הפלטפורמה שבה הוא פועל.",
+          "evaluation": {
+            "completed": true,
+            "is_acceptable": false,
+            "feedback": "MOCK REJECTION (control-flow test): this mock evaluator rejects every attempt, regardless of content, to test the attempt limit."
+          }
+        },
+        {
+          "attempt": 3,
+          "candidate_source": "actor_correction",
+          "candidate": "GroupShield הוא בוט שבניתי שמנטר התנהגות ושפה לא הולמת בקבוצות. מעבר לזה, אין לי במקורות פירוט נוסף על אופן הפעולה שלו או על הפלטפורמה שבה הוא פועל.",
+          "evaluation": {
+            "completed": true,
+            "is_acceptable": false,
+            "feedback": "MOCK REJECTION (control-flow test): this mock evaluator rejects every attempt, regardless of content, to test the attempt limit."
+          }
+        }
+      ],
+      "final_status": "attempts_exhausted",
+      "shown_to_user": "לא התקבלה תשובה מאושרת במסגרת מגבלת שלושת הניסיונות. אפשר לנסח את השאלה מחדש או לשאול שאלה אחרת."
+    }
+  ],
+  "displayed_conversation": [
+    {
+      "role": "user",
+      "content": "מה GroupShield?"
+    },
+    {
+      "role": "assistant",
+      "content": "לא התקבלה תשובה מאושרת במסגרת מגבלת שלושת הניסיונות. אפשר לנסח את השאלה מחדש או לשאול שאלה אחרת."
+    }
+  ],
+  "automatic_check": {
+    "flow_as_expected": true,
+    "detail": "3 rejected attempts, then a stop with the exhausted message"
+  }
+}

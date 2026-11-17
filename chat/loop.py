@@ -25,7 +25,6 @@ ERROR_MESSAGE = (
 SYSTEM_MESSAGES = (EXHAUSTED_MESSAGE, ERROR_MESSAGE)
 
 
-
 @dataclass
 class Outcome:
     status: str          # APPROVED | ATTEMPTS_EXHAUSTED | TECHNICAL_ERROR
