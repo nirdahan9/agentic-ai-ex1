@@ -29,8 +29,8 @@ Use these Hebrew forms when answering in Hebrew. Translate every other English t
 | Linux environments | סביבות Linux |
 | Israel Defense Forces (IDF) | צה״ל |
 | Logistics Officer | קצין לוגיסטיקה |
-| Operations Officer | קצין מבצעים |
-| Logistics Command HQ | מפקדת הלוגיסטיקה |
+| Operations Officer | קמב״ץ |
+| Logistics Command HQ | מפקדת קצין הלוגיסטיקה הראשי |
 | field units | יחידות שטח |
 | HQ | מטה |
 | Iron Swords war | מלחמת חרבות ברזל |
