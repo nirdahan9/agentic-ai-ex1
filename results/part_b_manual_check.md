@@ -40,7 +40,7 @@ The approval is correct. The answer has a small typo, a stray space in "ב- QA".
 | Claim in the answer | Source | Supported? |
 |---|---|---|
 | A bot I built that monitors behavior and inappropriate language in groups | `personal_summary.txt:11` | Yes, nearly word for word |
-| One of my personal projects | Summary, "My projects" | Yes |
+| One of my personal projects | Summary, "My projects" | Mostly. The source says "my projects", not "personal". This is a minor stretch. |
 | The sources do not say how it works or which platforms it runs on | Correct: the sources say nothing more | Yes (criterion C) |
 
 The approval is correct on the facts. The answer includes the phrase "לפי המקורות" ("according to the sources"). See limitation 1.

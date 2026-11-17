@@ -63,7 +63,7 @@ We checked every claim in the approved answers against `data/` (`results/part_b_
 The limitations we found:
 
 - **Inconsistent standard.** The same phrase was a reason to reject in one run and was accepted in another. A single LLM judgment is not a stable rule.
-- **Small stretches pass.** In an approved answer, the source's "impactful teams" became "a strong development team", and general values became job preferences. The evaluator judges grounding by overall meaning, so a plausible rewording that slightly overstates a source is not flagged. Only invented entities, such as a new employer or a new rank, are reliably caught.
+- **Small stretches pass.** In an approved answer, the source's "impactful teams" became "a strong development team", and general values became job preferences. The evaluator judges grounding by overall meaning, so a plausible rewording that slightly overstates a source is not flagged. Only clearly invented facts, such as a new employer or role, were reliably caught.
 - **Language errors are caught only sometimes.** "<bdi>לומד לומד</bdi>" was caught, but "<bdi>שירתי</bdi>" was approved.
 
 We first ran the system with an OpenAI evaluator (`gpt-5.4`; results archived in `results/previous_evaluator_gpt-5.4/`). Moving the evaluator to a different provider made its criterion labels precise and caught the unsupported offer, which the earlier evaluator missed. The stretch and spelling limitations remained with both.
