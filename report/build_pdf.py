@@ -22,6 +22,7 @@ p { margin: 4px 0; text-align: justify; }
 ul { margin: 3px 0 3px 18px; padding: 0; } li { margin: 1px 0; }
 blockquote { margin: 5px 0 5px 10px; padding: 3px 9px; border-left: 3px solid #1565c0; background: #f4f8fd; }
 blockquote p { margin: 2px 0; text-align: left; }
+blockquote p[dir="rtl"] { text-align: right; }
 code { font-size: 8.8pt; background: #f2f2f2; padding: 0 2px; border-radius: 2px; }
 .diagram { page-break-before: always; text-align: center; }
 .diagram img { width: 100%; }
