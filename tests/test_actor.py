@@ -32,6 +32,13 @@ def test_system_prompt_requires_grounding_and_missing_info_statement():
     assert "Hebrew" in system
 
 
+def test_system_prompt_requires_using_history_for_follow_ups():
+    system = build_messages("q", [], "B")[0]["content"]
+    assert "# Conversation context" in system
+    assert "answer the user's new question" in system
+    assert "earlier questions or answers" in system
+
+
 def test_braces_in_sources_do_not_break_prompt():
     system = build_messages("q", [], "skills: {python}")[0]["content"]
     assert "skills: {python}" in system

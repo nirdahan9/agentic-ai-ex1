@@ -16,4 +16,4 @@ LOG_PATH = Path(os.getenv("CHECK_LOG_PATH", ROOT / "logs" / "check_log.jsonl"))
 ACTOR_MODEL = os.getenv("ACTOR_MODEL", "gpt-5.4-mini-2026-03-17")
 
 # Name of the person the chat represents (must match the background sources).
-PERSON_NAME = os.getenv("PERSON_NAME") or "Nir Dahan"
+PERSON_NAME = os.getenv("PERSON_NAME") or "ניר דהן"
