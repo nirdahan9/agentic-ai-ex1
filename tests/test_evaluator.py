@@ -107,5 +107,5 @@ def test_placeholder_text_inside_materials_is_not_substituted():
 
 def test_evaluator_checks_language_rule_with_glossary():
     system = build_messages("q", "a", [], "b")[0]["content"]
-    assert "entirely in Hebrew" in system and "entirely in English" in system
+    assert "entirely in Hebrew, whatever the language of the question" in system
     assert "מדעי המחשב" in system and "{glossary}" not in system

@@ -1,6 +1,6 @@
-# Hebrew glossary for answers in Hebrew
+# Hebrew glossary
 
-Use these Hebrew forms when answering in Hebrew. Translate every other English term into natural Hebrew as well. Keep a term in English only if it appears in the "Keep in English" list.
+Answers are always in Hebrew. Use these Hebrew forms. Translate every other English term into natural Hebrew as well. Keep a term in English only if it appears in the "Keep in English" list.
 
 ## Translations
 
@@ -8,7 +8,7 @@ Use these Hebrew forms when answering in Hebrew. Translate every other English t
 |---|---|
 | Computer Science | מדעי המחשב |
 | Reichman University | אוניברסיטת רייכמן |
-| BSc / B.Sc. (in progress) | תואר ראשון (בלימודים) |
+| BSc / B.Sc. (in progress) | לומד לתואר ראשון |
 | Third-year student | סטודנט בשנה השלישית |
 | Hakfar Hayarok High School | תיכון הכפר הירוק |
 | Full Matriculation Diploma | תעודת בגרות מלאה |

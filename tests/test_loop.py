@@ -139,26 +139,8 @@ def test_history_keeps_approved_answers_and_drops_unanswered_questions(notice):
     ]
 
 
-# --- Language of status messages follows the question ------------------------
 
-from chat.loop import ERROR_MESSAGE_EN, EXHAUSTED_MESSAGE_EN, is_hebrew
-
-
-def test_is_hebrew():
-    assert is_hebrew("מה זה TypeScript?")
-    assert is_hebrew("ספר לי על DerbyUp")
-    assert not is_hebrew("Where do you work?")
-
-
-def test_english_question_gets_english_status_messages():
+def test_status_messages_are_hebrew_even_for_english_questions():
     out = handle_question("Where do you work?", [], "BG", "S", actor=FakeActor(),
                           evaluator=FakeEvaluator(False, False, False))
-    assert out.reply == EXHAUSTED_MESSAGE_EN
-    out = handle_question("Where do you work?", [], "BG", "S", actor=FakeActor(),
-                          evaluator=FakeEvaluator(EvaluationError("bad")))
-    assert out.reply == ERROR_MESSAGE_EN
-
-
-def test_english_status_messages_are_dropped_from_history():
-    shown = [{"role": "user", "content": "q"}, {"role": "assistant", "content": EXHAUSTED_MESSAGE_EN}]
-    assert to_history(shown) == []
+    assert out.reply == EXHAUSTED_MESSAGE
