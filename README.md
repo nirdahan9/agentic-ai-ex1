@@ -47,7 +47,7 @@ cp .env.example .env        # then fill in OPENAI_API_KEY
 | `chat/loop.py` | The generate → evaluate → correct loop: at most 3 attempts, and exits on approval, attempts exhausted or technical error |
 | `chat/sources.py` | Loads the background sources |
 | `chat/check_log.py` | Execution / check log (`logs/check_log.jsonl`), kept separate from the displayed chat history |
-| `docs/architecture.md` | Architecture diagram (Mermaid): sources, UI and history, Actor, Evaluator, evaluation result, feedback arc, and the three exit paths |
+| `docs/architecture.png` / `.svg` / `.md` | Architecture diagram: sources, chat UI and history, Actor, Evaluator, evaluation result, feedback arc, the three exit paths, and the check log |
 | `app.py` | Gradio UI in Hebrew (right-to-left). It shows only the user's messages and the final answers. The scenario ID for the log is under "הגדרות בדיקה" |
 | `tests/` | pytest checks that make no API calls |
 | `results/part_b_manual_check.md` | Manual check of approved answers against the sources, and the evaluator limitations found |
