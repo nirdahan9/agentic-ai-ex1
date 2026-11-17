@@ -149,3 +149,24 @@ Every rejection had the same feedback: "MOCK REJECTION (control-flow test): this
 **Matched expectation: yes.**
 
 **Observation:** Because the mock feedback names no real problem, the Actor had nothing to fix. Attempts 2 and 3 are therefore nearly identical to attempt 1. This shows that the quality of a correction depends on the quality of the feedback.
+
+---
+
+## Appendix — technical-error path (extra runs, not one of the five scenarios)
+
+These runs show exit 6 of Part C ("technical error"). Each one is saved as a full log record in [`technical_error_runs.jsonl`](technical_error_runs.jsonl).
+
+| Scenario ID | How it was produced | Type | Logged `error` | Shown to the user |
+|---|---|---|---|---|
+| `error-actor-call-fails` | Chat server started with an invalid `OPENAI_API_KEY`; question sent through the app's `/respond` endpoint | Real (OpenAI rejected the call) | `actor call failed: AuthenticationError: Error code: 401 …` | Hebrew error message |
+| `error-evaluator-call-fails` | Chat server started with `EVALUATOR_MODEL=gpt-does-not-exist`. The Actor answered normally | Real (OpenAI rejected the evaluator call) | `evaluation not completed: evaluator call failed: NotFoundError: Error code: 404 …` | Hebrew error message |
+| `error-evaluator-invalid-output` | The evaluator returns `{"is_acceptable": true}` without `feedback` | **MOCK (simulated)**, labelled in the record's `evaluator` field | `evaluation not completed: invalid evaluation output: … 'feedback' Field required` | Hebrew error message |
+
+In all three runs:
+
+- `final_status` is `technical_error`.
+- The failed attempt is logged as `"evaluation": {"completed": false, "reason": …}`, with no content decision.
+- No candidate answer was shown to the user.
+- The loop stopped after one attempt.
+
+In the third run, the output contained `"is_acceptable": true` but failed validation. The answer was still **not** approved, because a validation failure is never treated as content approval.

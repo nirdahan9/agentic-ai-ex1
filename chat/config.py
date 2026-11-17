@@ -10,12 +10,12 @@ load_dotenv(ROOT / ".env")
 
 DATA_DIR = ROOT / "data"
 PROMPTS_DIR = ROOT / "prompts"
-LOG_PATH = Path(os.getenv("CHECK_LOG_PATH", ROOT / "logs" / "check_log.jsonl"))
+LOG_PATH = Path(os.getenv("CHECK_LOG_PATH") or ROOT / "logs" / "check_log.jsonl")
 
 # Pinned model snapshot so that runs are reproducible; override in .env.
-ACTOR_MODEL = os.getenv("ACTOR_MODEL", "gpt-5.4-mini-2026-03-17")
+ACTOR_MODEL = os.getenv("ACTOR_MODEL") or "gpt-5.4-mini-2026-03-17"
 # Separate call and prompts for the evaluator; a larger model for stricter checking.
-EVALUATOR_MODEL = os.getenv("EVALUATOR_MODEL", "gpt-5.4-2026-03-05")
+EVALUATOR_MODEL = os.getenv("EVALUATOR_MODEL") or "gpt-5.4-2026-03-05"
 
 # Name of the person the chat represents (must match the background sources).
 PERSON_NAME = os.getenv("PERSON_NAME") or "ניר דהן"
