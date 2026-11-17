@@ -1,15 +1,19 @@
 """Actor (answer generator): builds the request and calls the language model."""
 
+import re
+
 from openai import OpenAI
 
 from chat.config import ACTOR_MODEL, PERSON_NAME, PROMPTS_DIR
+from chat.sources import load_glossary
 
 
 def actor_system_prompt(background: str) -> str:
     """The Actor system prompt with the background sources embedded."""
     template = (PROMPTS_DIR / "actor_system.md").read_text(encoding="utf-8")
-    # str.replace (not str.format) so braces inside the sources are left untouched.
-    return template.replace("{name}", PERSON_NAME).replace("{background}", background)
+    values = {"name": PERSON_NAME, "glossary": load_glossary(), "background": background}
+    # Single pass over the template only, so braces inside the sources are left untouched.
+    return re.sub(r"\{(\w+)\}", lambda m: values.get(m.group(1), m.group(0)), template)
 
 
 def revision_request(rejected_answer: str, feedback: str) -> str:

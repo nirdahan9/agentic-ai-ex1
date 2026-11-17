@@ -103,3 +103,9 @@ def test_unexpected_response_shape_raises_evaluation_error():
 def test_placeholder_text_inside_materials_is_not_substituted():
     user = build_messages("my {answer} question", "THE-ANSWER", [], "bg {question}")[1]["content"]
     assert "my {answer} question" in user and "bg {question}" in user
+
+
+def test_evaluator_checks_language_rule_with_glossary():
+    system = build_messages("q", "a", [], "b")[0]["content"]
+    assert "entirely in Hebrew" in system and "entirely in English" in system
+    assert "מדעי המחשב" in system and "{glossary}" not in system

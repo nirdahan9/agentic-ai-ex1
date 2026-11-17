@@ -41,6 +41,7 @@ cp .env.example .env        # then fill in OPENAI_API_KEY
 | `prompts/evaluator_system.md` | System Evaluator: the four criteria (grounding, answering the question, missing information, clarity) and the feedback rules |
 | `prompts/evaluator_user.md` | User Evaluator: the check message with the sources, relevant history, question and candidate answer |
 | `chat/evaluator.py` | `Evaluation` Pydantic model (`is_acceptable: bool`, `feedback: str`), the evaluator call, and `EvaluationError` for technical failures |
+| `prompts/glossary.md` | Hebrew glossary for answers in Hebrew, and the terms kept in English. Used by the Actor and the Evaluator |
 | `prompts/actor_revision.md` | Correction request: the rejected answer and the evaluator's feedback, sent to the Actor on attempts 2–3 |
 | `chat/actor.py` | Builds every Actor call from the background, the conversation history and the user question (plus the rejected answer and feedback on a correction) |
 | `chat/loop.py` | The generate → evaluate → correct loop: at most 3 attempts, and exits on approval, attempts exhausted or technical error |
@@ -51,6 +52,10 @@ cp .env.example .env        # then fill in OPENAI_API_KEY
 | `tests/` | pytest checks that make no API calls |
 | `results/part_b_manual_check.md` | Manual check of approved answers against the sources, and the evaluator limitations found |
 | `results/part_b_evaluator_runs.json`, `results/part_b_controlled_tests.json` | Raw evaluator outputs for the Actor answers and for the hand-written controlled cases |
+
+## Answer language
+
+The UI is in Hebrew. Answers follow the language of the user's question. If the question contains any Hebrew text, the answer is entirely in Hebrew. Otherwise, the answer is in English. Hebrew answers translate professional terms using [`prompts/glossary.md`](prompts/glossary.md). Only names and approved exceptions stay in English: Via.AI, DerbyUp, GroupShield, LinkedIn, GitHub, programming languages and tools, QA, and Full-Stack. The evaluator enforces this rule as part of criterion D (clarity and style). Status messages for attempts exhausted and technical errors follow the same rule.
 
 ## Conversation history
 

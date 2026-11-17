@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from chat.config import DATA_DIR
+from chat.config import DATA_DIR, PROMPTS_DIR
 
 # Source files, in the order they are presented to the model.
 SOURCE_FILES = {
@@ -18,3 +18,8 @@ def load_background(data_dir: Path = DATA_DIR) -> str:
         text = (data_dir / filename).read_text(encoding="utf-8").strip()
         sections.append(f"## Source: {title} ({filename})\n\n{text}")
     return "\n\n".join(sections)
+
+
+def load_glossary(prompts_dir: Path = PROMPTS_DIR) -> str:
+    """Hebrew glossary used by the Actor and the Evaluator for answers in Hebrew."""
+    return (prompts_dir / "glossary.md").read_text(encoding="utf-8").strip()

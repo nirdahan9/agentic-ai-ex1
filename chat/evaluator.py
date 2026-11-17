@@ -6,6 +6,7 @@ from openai import OpenAI
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from chat.config import EVALUATOR_MODEL, PERSON_NAME, PROMPTS_DIR
+from chat.sources import load_glossary
 
 
 class Evaluation(BaseModel):
@@ -41,7 +42,8 @@ def format_history(history: list[dict]) -> str:
 
 def build_messages(question: str, answer: str, history: list[dict], background: str) -> list[dict]:
     """System Evaluator (criteria) + User Evaluator (answer and the material to check it)."""
-    system = _fill((PROMPTS_DIR / "evaluator_system.md").read_text(encoding="utf-8"), name=PERSON_NAME)
+    system = _fill((PROMPTS_DIR / "evaluator_system.md").read_text(encoding="utf-8"),
+                   name=PERSON_NAME, glossary=load_glossary())
     user = _fill(
         (PROMPTS_DIR / "evaluator_user.md").read_text(encoding="utf-8"),
         background=background,

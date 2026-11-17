@@ -1,5 +1,6 @@
 """Generate → evaluate → correct loop for one user question (at most MAX_ATTEMPTS)."""
 
+import re
 from dataclasses import dataclass
 from typing import Callable
 
@@ -13,7 +14,8 @@ APPROVED = "approved"
 ATTEMPTS_EXHAUSTED = "attempts_exhausted"
 TECHNICAL_ERROR = "technical_error"
 
-# Messages shown to the user when no approved answer is available (Hebrew UI).
+# Messages shown to the user when no approved answer is available,
+# in the language of the question (same rule as the Actor: any Hebrew text → Hebrew).
 EXHAUSTED_MESSAGE = (
     "לא התקבלה תשובה מאושרת במסגרת מגבלת שלושת הניסיונות. "
     "אפשר לנסח את השאלה מחדש או לשאול שאלה אחרת."
@@ -22,7 +24,19 @@ ERROR_MESSAGE = (
     "אירעה שגיאה טכנית והטיפול בשאלה הופסק, ולכן לא ניתן להציג תשובה. "
     "אפשר לנסות שוב בעוד רגע."
 )
-SYSTEM_MESSAGES = (EXHAUSTED_MESSAGE, ERROR_MESSAGE)
+EXHAUSTED_MESSAGE_EN = (
+    "No approved answer was obtained within the limit of three attempts. "
+    "You can rephrase the question or ask another one."
+)
+ERROR_MESSAGE_EN = (
+    "A technical error occurred and handling of the question was stopped, "
+    "so no answer can be shown. Please try again in a moment."
+)
+SYSTEM_MESSAGES = (EXHAUSTED_MESSAGE, ERROR_MESSAGE, EXHAUSTED_MESSAGE_EN, ERROR_MESSAGE_EN)
+
+
+def is_hebrew(text: str) -> bool:
+    return bool(re.search(r"[\u0590-\u05FF]", text))
 
 
 @dataclass
@@ -65,6 +79,10 @@ def handle_question(
             record["error"] = error
         return Outcome(status, reply, record)
 
+    hebrew = is_hebrew(question)
+    exhausted_message = EXHAUSTED_MESSAGE if hebrew else EXHAUSTED_MESSAGE_EN
+    error_message = ERROR_MESSAGE if hebrew else ERROR_MESSAGE_EN
+
     rejected_answer = feedback = None
     for attempt in range(1, MAX_ATTEMPTS + 1):
         entry = {"attempt": attempt}
@@ -80,7 +98,7 @@ def handle_question(
             except Exception as e:
                 entry["candidate"] = None
                 entry["evaluation"] = {"completed": False, "reason": "no candidate: actor call failed"}
-                return finish(TECHNICAL_ERROR, ERROR_MESSAGE, f"actor call failed: {type(e).__name__}: {e}")
+                return finish(TECHNICAL_ERROR, error_message, f"actor call failed: {type(e).__name__}: {e}")
             entry["candidate_source"] = "actor" if attempt == 1 else "actor_correction"
         entry["candidate"] = candidate
 
@@ -90,7 +108,7 @@ def handle_question(
         except Exception as e:  # EvaluationError (call/parse/validation) or any other failure
             reason = str(e) if isinstance(e, EvaluationError) else f"{type(e).__name__}: {e}"
             entry["evaluation"] = {"completed": False, "reason": reason}
-            return finish(TECHNICAL_ERROR, ERROR_MESSAGE, f"evaluation not completed: {reason}")
+            return finish(TECHNICAL_ERROR, error_message, f"evaluation not completed: {reason}")
         entry["evaluation"] = {"completed": True, "is_acceptable": result.is_acceptable,
                                "feedback": result.feedback}
 
@@ -102,4 +120,4 @@ def handle_question(
         rejected_answer, feedback = candidate, result.feedback
 
     # 5: the third answer was rejected too.
-    return finish(ATTEMPTS_EXHAUSTED, EXHAUSTED_MESSAGE)
+    return finish(ATTEMPTS_EXHAUSTED, exhausted_message)

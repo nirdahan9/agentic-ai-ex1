@@ -35,7 +35,7 @@ class FakeEvaluator:
 
 
 def run(actor, evaluator, **kw):
-    return handle_question("Q", [{"role": "user", "content": "h"}], "BG", "S1",
+    return handle_question("שאלה", [{"role": "user", "content": "h"}], "BG", "S1",
                            actor=actor, evaluator=evaluator, **kw)
 
 
@@ -58,7 +58,7 @@ def test_rejection_sends_rejected_answer_and_feedback_to_next_attempt():
     second = actor.calls[1]
     assert second["rejected_answer"] == "draft-1"
     assert second["feedback"] == "feedback on draft-1"
-    assert second["question"] == "Q" and second["background"] == "BG"
+    assert second["question"] == "שאלה" and second["background"] == "BG"
     assert second["history"] == [{"role": "user", "content": "h"}]
     assert ev.seen == ["draft-1", "draft-2"]  # every new answer is re-evaluated
 
@@ -113,7 +113,7 @@ def test_injected_first_draft_is_evaluated_and_then_corrected_by_actor():
 def test_record_has_required_log_fields():
     out = run(FakeActor(), FakeEvaluator(True))
     r = out.record
-    assert r["scenario_id"] == "S1" and r["question"] == "Q" and r["final_status"] == APPROVED
+    assert r["scenario_id"] == "S1" and r["question"] == "שאלה" and r["final_status"] == APPROVED
     a = r["attempts"][0]
     assert {"attempt", "candidate", "evaluation"} <= a.keys()
 
@@ -137,3 +137,28 @@ def test_history_keeps_approved_answers_and_drops_unanswered_questions(notice):
         {"role": "user", "content": "q1"}, {"role": "assistant", "content": "approved-1"},
         {"role": "user", "content": "q3"}, {"role": "assistant", "content": "approved-3"},
     ]
+
+
+# --- Language of status messages follows the question ------------------------
+
+from chat.loop import ERROR_MESSAGE_EN, EXHAUSTED_MESSAGE_EN, is_hebrew
+
+
+def test_is_hebrew():
+    assert is_hebrew("מה זה TypeScript?")
+    assert is_hebrew("ספר לי על DerbyUp")
+    assert not is_hebrew("Where do you work?")
+
+
+def test_english_question_gets_english_status_messages():
+    out = handle_question("Where do you work?", [], "BG", "S", actor=FakeActor(),
+                          evaluator=FakeEvaluator(False, False, False))
+    assert out.reply == EXHAUSTED_MESSAGE_EN
+    out = handle_question("Where do you work?", [], "BG", "S", actor=FakeActor(),
+                          evaluator=FakeEvaluator(EvaluationError("bad")))
+    assert out.reply == ERROR_MESSAGE_EN
+
+
+def test_english_status_messages_are_dropped_from_history():
+    shown = [{"role": "user", "content": "q"}, {"role": "assistant", "content": EXHAUSTED_MESSAGE_EN}]
+    assert to_history(shown) == []

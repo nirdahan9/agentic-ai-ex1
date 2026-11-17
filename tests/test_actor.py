@@ -82,3 +82,10 @@ def test_correction_call_includes_rejected_answer_and_feedback():
 
 def test_first_attempt_has_no_correction_request():
     assert len(build_messages("q", [], "B")) == 2
+
+
+def test_actor_prompt_has_language_rule_and_glossary():
+    system = build_messages("q", [], "B")[0]["content"]
+    assert "language of the user's latest question" in system
+    assert "מדעי המחשב" in system and "Keep in English" in system
+    assert "{glossary}" not in system
