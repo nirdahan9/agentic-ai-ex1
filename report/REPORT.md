@@ -1,6 +1,6 @@
 # Personal Chat with an Answer Evaluator and an Improvement Loop — Report
 
-**Assignment 1, AI Systems** · Submitted by: Nir Dahan, Liav Sarfati, Eden Malka  
+**Assignment 1, Agentic AI** · Submitted by: Nir Dahan, Liav Sarfati, Eden Malka  
 Actor: OpenAI `gpt-5.4-mini-2026-03-17` · Evaluator: Anthropic `claude-opus-5-5`
 
 ## 1. System overview
