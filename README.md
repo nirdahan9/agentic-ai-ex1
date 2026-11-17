@@ -1,6 +1,6 @@
 # Personal chat with an answer evaluator and an improvement loop
 
-Assignment 1, AI Systems course: Lecture 2, slides 19–21.
+Assignment 1, Agentic AI course: Lecture 2, slides 19–21.
 
 **Submitted by:** Nir Dahan (ניר דהן), Liav Sarfati (ליאב צרפתי), Eden Malka (עדן מלכה)
 
