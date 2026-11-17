@@ -1,0 +1,38 @@
+[
+ {
+  "question": "ספר לי על הניסיון הצבאי שלך",
+  "answer": "שירתתי 5 שנים בצה״ל כ־Logistics Officer, בין אוגוסט 2019 ליולי 2024. במהלך השירות מילאתי 4 תפקידים ביחידות שטח ובמטה, כולל תפקיד של Operations Officer ב־Logistics Command HQ במהלך מלחמת חרבות ברזל.  \nבמסגרת התפקיד עבדתי בסביבות לחוצות, הובלתי צוותים, הכנתי תדריכים מבוססי נתונים למפקדים בכירים, ותכננתי והוצאתי לפועל תוכניות אימון והקצאת משאבים. בנוסף, קיבלתי 3 הוקרות על מצוינות, כולל ציון לשבח מאלוף־משנה.",
+  "is_acceptable": false,
+  "feedback": "Fails criterion A. Most of the answer is grounded in the sources: 5 years in the IDF from August 2019 to July 2024, 4 roles across field units and HQ, service as Operations Officer at the Logistics Command HQ during the Iron Swords war, leading teams, data-driven briefings, and planning training/resource allocation are all supported by LinkedIn and the personal summary. However, the last claim is incorrect: the sources say he was recognized 3 times, including a citation from a Brigadier General, not from a Lieutenant Colonel (\"אלוף-משנה\"). Practical fix: replace that rank with \"תא\"ל\"/\"Brigadier General\" or remove the specific rank. The answer otherwise addresses the question and is clear, in Hebrew, first person, and concise."
+ },
+ {
+  "question": "אילו שפות תכנות וכלים אתה מכיר?",
+  "answer": "אני עובד עם Java, Python, C ו-TypeScript, וגם עם SQL ו-Node.js. אני עובד בסביבות Linux ומשתמש ב-Git; בנוסף, יש לי ניסיון ב-Software Development, ולפי הפרופיל שלי גם בסיס טוב ב-Data Structures, Algorithms ו-Machine Learning.",
+  "is_acceptable": true,
+  "feedback": "Acceptable. The answer is grounded in the LinkedIn About section and personal summary, which explicitly mention Java, Python, C, TypeScript, SQL, Node.js, Linux environments, and Git, as well as strong foundations in Data Structures, Algorithms, and Machine Learning. It directly answers the user's question about programming languages and tools, stays in Hebrew and first person, and remains concise and professional."
+ },
+ {
+  "question": "ספר לי על DerbyUp",
+  "answer": "DerbyUp הוא פרויקט של פלטפורמת חיזוי כדורגל חברתית, שעליו עבדתי במהלך השנה האחרונה. לפי מה שכתבתי, כמה מהחברות הגדולות בישראל אימצו אותה כפלטפורמת ההימור/ניבוי הרשמית שלהן למונדיאל.  \nאם תרצה, אני יכול גם לספר מה היה התפקיד שלי בפרויקט או איך הוא עבד מבחינה טכנית — אבל אין לי כרגע פירוט נוסף במקורות מעבר לזה.",
+  "is_acceptable": false,
+  "feedback": "Fails A and D. The answer adds an unsupported detail by calling DerbyUp \"the official betting/prediction platform\" (\"פלטפורמת ההימור/ניבוי הרשמית\"); the sources mention a social football prediction platform adopted as the official World Cup prediction competition platform, but not betting/gambling. Remove any reference to betting and stay closer to the source wording. It is otherwise grounded and acknowledges missing technical details, but the phrasing should remain concise and source-faithful."
+ },
+ {
+  "question": "מה אתה לומד ואיפה?",
+  "answer": "אני לומד Computer Science ב־Reichman University, במסגרת B.Sc. שצפויה להסתיים ביוני 2027. אני בשנת הלימודים השלישית שלי.",
+  "is_acceptable": true,
+  "feedback": "Acceptable. The answer directly addresses the question about what and where Nir studies. Its claims are fully supported by the sources: both the LinkedIn profile and personal summary state that Nir is a third-year Computer Science student at Reichman University, pursuing a B.Sc. expected in June 2027. The answer is clear, concise, in Hebrew, first person, and professionally phrased."
+ },
+ {
+  "question": "מה GroupShield?",
+  "answer": "GroupShield הוא בוט שבניתי שמנטר התנהגות ושפה לא הולמת בקבוצות. מעבר לזה, אין לי במקורות פרטים נוספים על היכולות המדויקות שלו או איך הוא ממומש.",
+  "is_acceptable": true,
+  "feedback": "The answer is grounded in the personal summary, which explicitly says: 'GroupShield: a bot I built that monitors behavior and inappropriate language in groups.' It directly answers the user's question, stays in Hebrew and first person, and correctly handles missing details by stating that the sources do not provide more information about its implementation or exact capabilities."
+ },
+ {
+  "question": "איזה סוג עבודה אתה מחפש?",
+  "answer": "אני מחפש עבודה בפיתוח תוכנה או ב‑AI. אני לומד Computer Science ב‑Reichman University, עובד כיום כ‑QA Engineer ב‑Via.AI, ומתעניין במיוחד ב‑AI וב‑AI agents.",
+  "is_acceptable": true,
+  "feedback": "The answer is grounded in the sources: the personal summary explicitly says Nir is looking for a job in software development or AI, studies Computer Science at Reichman University, works as a QA Engineer at Via.AI, and is especially interested in AI and AI agents. It directly answers the user's question, stays concise, is in Hebrew and first person, and uses a professional friendly tone."
+ }
+]
