@@ -2,7 +2,9 @@
 
 Assignment 1, AI Systems course: Lecture 2, slides 19–21.
 
-This is a Gradio chat that represents Nir Dahan and answers only from two background sources. For each question, an **Actor** generates a candidate answer and a separate **Critic (evaluator)** checks it, returning structured output that is validated with Pydantic. A rejected answer goes back to the Actor together with the evaluator's feedback, for up to 3 generation attempts per question. Only approved answers are shown to the user. All drafts, decisions and feedback go to a separate check log.
+**Submitted by:** Nir Dahan (ניר דהן), Liav Sarfati (ליאב צרפתי), Eden Malka (עדן מלכה)
+
+This is a Gradio chat that represents Nir Dahan, one of the team members, and answers only from two background sources. For each question, an **Actor** generates a candidate answer and a separate **Critic (evaluator)** checks it, returning structured output that is validated with Pydantic. A rejected answer goes back to the Actor together with the evaluator's feedback, for up to 3 generation attempts per question. Only approved answers are shown to the user. All drafts, decisions and feedback go to a separate check log.
 
 - **Report:** [report/REPORT.md](report/REPORT.md) (PDF: [report/REPORT.pdf](report/REPORT.pdf))
 - **Architecture diagram:** [docs/architecture.png](docs/architecture.png), explained in [docs/architecture.md](docs/architecture.md)

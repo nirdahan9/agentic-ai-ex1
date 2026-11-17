@@ -1,6 +1,6 @@
 # Part B — manual check of approved answers
 
-Pydantic validation only proves that the evaluator output has the right structure and types. It does not prove that the decision is correct or that the answer is true. To check the decisions, I compared every claim in the approved answers to the background sources by hand.
+Pydantic validation only proves that the evaluator output has the right structure and types. It does not prove that the decision is correct or that the answer is true. To check the decisions, we compared every claim in the approved answers to the background sources by hand.
 
 - Run date: 2026-11-17
 - Actor: `gpt-5.4-mini-2026-03-17`

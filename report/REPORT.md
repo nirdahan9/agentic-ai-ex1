@@ -1,11 +1,11 @@
 # Personal Chat with an Answer Evaluator and an Improvement Loop — Report
 
-**Assignment 1, AI Systems** · Nir Dahan  
+**Assignment 1, AI Systems** · Submitted by: Nir Dahan, Liav Sarfati, Eden Malka  
 Actor: `gpt-5.4-mini-2026-03-17` · Evaluator: `gpt-5.4-2026-03-05`
 
 ## 1. System overview
 
-The chat represents me, and it answers only from two background sources: a LinkedIn export and a half-page personal summary. Every question goes through a generate → evaluate → correct loop (`chat/loop.py`; see the architecture diagram on page 3).
+The chat represents Nir Dahan, one of the team members, and it answers only from two background sources about Nir: a LinkedIn export and a half-page personal summary. Every question goes through a generate → evaluate → correct loop (`chat/loop.py`; see the architecture diagram on page 3).
 
 - **Actor.** It receives the sources, the conversation history and the question, and writes a candidate answer.
 - **Evaluator.** It is a separate call with its own prompts. It receives the question, the candidate, the sources and the relevant history, and checks four criteria: grounding, answering the question, handling missing information, and clarity and style. It returns JSON that is validated against a Pydantic model, `Evaluation(is_acceptable: bool, feedback: str)`.
@@ -32,7 +32,7 @@ The Actor received the rejected draft and this feedback, and its correction foll
 
 The evaluator re-checked this version and approved it.
 
-**A natural case from live use.** In a follow-up about the location of my army service, the Actor wrote the military role title with its letters swapped ("<bdi>מקב״ץ</bdi>" instead of "<bdi>קמב״ץ</bdi>"). The evaluator rejected the answer and spelled out the exact fix. The second attempt changed only that word and was approved.
+**A natural case from live use.** In a follow-up about the location of Nir's army service, the Actor wrote the military role title with its letters swapped ("<bdi>מקב״ץ</bdi>" instead of "<bdi>קמב״ץ</bdi>"). The evaluator rejected the answer and spelled out the exact fix. The second attempt changed only that word and was approved.
 
 In both cases the correction was targeted: the Actor fixed what the feedback named and kept the rest. The mock run in scenario 5 shows the other side. When the feedback named no concrete problem, attempts 2 and 3 were nearly identical to attempt 1. The loop is only as useful as the feedback it carries.
 
@@ -49,7 +49,7 @@ Schema validity means "the judge returned a well-formed verdict", not "the verdi
 
 ## 4. Evaluator limitations found in the manual check
 
-I checked every claim in the approved answers against `data/` (`results/part_b_manual_check.md`). The evaluator caught real hallucinations by the Actor:
+We checked every claim in the approved answers against `data/` (`results/part_b_manual_check.md`). The evaluator caught real hallucinations by the Actor:
 
 - a wrong rank: Colonel instead of Brigadier General (תת־אלוף);
 - the word "betting" for a prediction competition.
