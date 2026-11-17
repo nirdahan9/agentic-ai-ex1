@@ -9,7 +9,7 @@ This is a Gradio chat that represents Nir Dahan, one of the team members, and an
 - **Report:** [report/REPORT.md](report/REPORT.md) (PDF: [report/REPORT.pdf](report/REPORT.pdf))
 - **Architecture diagram:** [docs/architecture.png](docs/architecture.png), explained in [docs/architecture.md](docs/architecture.md)
 - **Results:** [results/part_d_results.md](results/part_d_results.md) for the five scenarios, and [results/part_b_manual_check.md](results/part_b_manual_check.md) for the manual check of approved answers
-- **Screenshots:** [results/screenshots/](results/screenshots/)
+- **Screenshots:** [see below](#screenshots)
 
 ## Models and settings used in the experiments
 
@@ -108,6 +108,17 @@ On a technical error, the failed attempt has `"evaluation": {"completed": false,
 | `docs/architecture.svg` / `.png` / `.md` | Architecture diagram |
 | `report/` | Short report (Markdown and PDF) |
 | `.env.example` | Environment variable names only (no values) |
+
+## Screenshots
+
+These show the conversation and the checking process. No access keys are visible.
+
+| File | What it shows |
+|---|---|
+| [`01a_chat_conversation.png`](results/screenshots/01a_chat_conversation.png) | The Hebrew chat: a question about the current job, "where do you study?", and the follow-up "when do you expect to finish **there**?", where the context is kept |
+| [`01b_chat_conversation.png`](results/screenshots/01b_chat_conversation.png) | The same conversation continued: the GPA question, answered by stating that the information is not in the sources |
+| [`02_check_process_scenario4.png`](results/screenshots/02_check_process_scenario4.png) | The checking process for scenario 4 (`results/part_d/scenario_4.json`): the injected Wix draft is rejected with feedback (`is_acceptable: false`), and the corrected version is approved (`is_acceptable: true`) |
+| [`03_check_log_ui_run.png`](results/screenshots/03_check_log_ui_run.png) | The check log of the conversation in 01a/01b (`scenario_id: ui-demo`): the Actor and Evaluator models, each attempt, the evaluator's decision and feedback, and the final status |
 
 ## Conversation history
 
