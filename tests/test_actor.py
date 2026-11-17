@@ -66,3 +66,19 @@ def test_gradio_history_keeps_only_displayed_messages():
         {"role": "user", "content": "hi"},
         {"role": "assistant", "content": "final answer"},
     ]
+
+
+def test_correction_call_includes_rejected_answer_and_feedback():
+    history = [{"role": "user", "content": "PREV-Q"}, {"role": "assistant", "content": "PREV-A"}]
+    messages = build_messages("THE-QUESTION", history, "B",
+                              rejected_answer="REJECTED-DRAFT", feedback="FIX-THIS")
+    assert messages[1:3] == history
+    assert messages[3] == {"role": "user", "content": "THE-QUESTION"}
+    revision = messages[4]["content"]
+    assert messages[4]["role"] == "user"
+    assert "REJECTED-DRAFT" in revision and "FIX-THIS" in revision
+    assert "{rejected_answer}" not in revision and "{feedback}" not in revision
+
+
+def test_first_attempt_has_no_correction_request():
+    assert len(build_messages("q", [], "B")) == 2

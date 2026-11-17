@@ -1,4 +1,4 @@
-"""Check log: drafts and evaluation details, kept separate from the chat history."""
+"""Execution / check log: every attempt, decision and feedback, kept separate from the chat history."""
 
 import json
 from datetime import datetime, timezone
