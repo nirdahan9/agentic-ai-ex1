@@ -6,3 +6,6 @@ __pycache__/
 .gradio/
 .DS_Store
 data/raw/
+
+# Local check log from manual runs; scenario logs for submission go elsewhere (Part D)
+logs/check_log.jsonl
