@@ -1,0 +1,44 @@
+LinkedIn profile of Nir Dahan
+(Exported manually from https://www.linkedin.com/in/nir-dahan01 on 2026-11-17. Contact e-mail omitted.)
+
+Name: Nir Dahan
+Headline: Computer Science Student @ Reichman University | QA Engineer @ Via.AI | Former Logistics Officer
+Location: Ramat HaSharon, Tel Aviv District, Israel
+GitHub: github.com/nirdahan9
+
+== Top skills ==
+- Machine Learning
+- Statistics
+- Software Development
+
+== Languages ==
+- Hebrew (Native or Bilingual)
+- English (Full Professional)
+
+== About ==
+Third-year Computer Science student at Reichman University with strong foundations in Data Structures, Algorithms, systems programming, Machine Learning and Full-Stack Development. Hands-on experience with Java, Python, C, TypeScript and development in Linux environments, using Git and working with SQL and Node.js. In the last year I've worked on a social football prediction platform which was adopted by some of the biggest companies in Israel as the official World Cup prediction competition platform. Over five years of military service as an IDF Logistics Officer, I operated in high-pressure environments, led teams, and supported senior commanders in decision-making and operational planning, including serving as an Operations Officer at the Logistics Command HQ during the Iron Swords war. Since August 2026, I've worked at VIA.AI. As a QA Engineer, I test AI-powered travel products. I perform manual and automated testing alongside the development team. I'm passionate about building reliable software and solving complex problems, and I'm focused on growing as a software engineer through impactful teams and real-world projects. You can also find my code and technical work on GitHub: github.com/nirdahan9
+
+== Experience ==
+
+Via.ai
+Quality Assurance Engineer
+August 2026 - Present (4 months)
+Working as a QA Engineer at VIA.AI, developing AI-powered solutions for the travel industry. Responsible for manual and automated software testing, identifying bugs, and ensuring product quality and reliability. Collaborating closely with the engineering team to identify issues, improve functionality, and support the development process.
+
+Israel Defense Forces
+Logistics Officer
+August 2019 - July 2024 (5 years)
+- Held 4 roles across field units and HQ (operations + training), managing cross-functional coordination and mission-critical logistics.
+- Delivered real-time operational insights and data-driven briefings to senior commanders to support decision-making under tight timelines.
+- Served as Operations Officer at the Logistics Command HQ during the Iron Swords war, coordinating multi-stakeholder operational plans and rapid prioritization.
+- Planned and executed training programs and resource allocation, tracking readiness and operational requirements across multiple activities.
+- Led teams in high-pressure environments, improving execution speed and operational alignment across units.
+- Recognized for excellence 3 times, including a citation from a Brigadier General.
+
+== Education ==
+
+Reichman University
+BSc (in progress), Computer Science (October 2024 - June 2027)
+
+Hakfar Hayarok High School
+Full Matriculation Diploma, Computer Science & Physics (September 2016 - June 2019)

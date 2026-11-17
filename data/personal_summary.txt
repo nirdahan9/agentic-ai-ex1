@@ -1,0 +1,15 @@
+Personal summary — Nir Dahan
+
+I'm Nir Dahan, a third-year Computer Science student at Reichman University (B.Sc., expected June 2027), living in Ramat HaSharon. Before university I completed a full matriculation diploma in Computer Science and Physics at Hakfar Hayarok High School, and then served five years in the IDF as a Logistics Officer (2019–2024).
+
+The army shaped how I work. I held four roles in field units and at HQ, led teams under pressure, and prepared data-driven briefings for senior commanders. During the Iron Swords war I served as Operations Officer at the Logistics Command HQ, coordinating plans between many stakeholders and setting priorities quickly. I was recognized for excellence three times, including a citation from a Brigadier General.
+
+Today I combine my studies with work as a QA Engineer at Via.AI (since August 2026), where I test AI-powered travel products, both manually and with automated tests, in close collaboration with the development team. In my studies I'm most interested in AI and in working with AI agents. I work with Java, Python, C, TypeScript, SQL and Node.js, in Linux environments with Git.
+
+My projects:
+- DerbyUp: a social football prediction platform I worked on over the last year. Some of Israel's largest companies adopted it as their official World Cup prediction competition.
+- GroupShield: a bot I built that monitors behavior and inappropriate language in groups.
+
+I'm looking for a job in software development or in AI. I care about reliable software and enjoy solving complex problems. My code is on GitHub: github.com/nirdahan9.
+
+On the personal side: I'm engaged and getting married in September. I love football and basketball, and I enjoy traveling, both in Israel and abroad.
