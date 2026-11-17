@@ -4,8 +4,8 @@
   "title": "Detail not in the sources",
   "kind": "LLM",
   "actor_model": "gpt-5.4-mini-2026-03-17",
-  "evaluator": "gpt-5.4-2026-03-05",
-  "run_at": "2026-11-17T12:37:43.749585+00:00",
+  "evaluator": "claude-opus-5-5",
+  "run_at": "2026-11-17T13:00:31.875928+00:00",
   "expected": "An answer stating there is not enough information (the GPA is not in the sources), with no invented personal fact. It is approved.",
   "turns": [
     {
@@ -17,16 +17,16 @@
         {
           "attempt": 1,
           "candidate_source": "actor",
-          "candidate": "אין לי נתון על הממוצע בתואר במקורות שברשותי, ולכן אני לא יכול למסור מספר מדויק.  \nאם תרצה, אני יכול כן לספר על הלימודים שלי במדעי המחשב באוניברסיטת רייכמן ועל הקורסים והתחומים שבהם אני מתמקד.",
+          "candidate": "אין לי במקורות מידע על ממוצע הציונים שלי בתואר, ולכן אני לא יכול למסור מספר מדויק. אם תרצה, אני יכול כן לספר על תחומי הלימוד שלי או על הפרויקטים והניסיון הרלוונטי שלי.",
           "evaluation": {
             "completed": true,
             "is_acceptable": true,
-            "feedback": "The answer meets A–D. It correctly states that the sources do not provide Nir Dahan’s grade average, satisfying C, and it directly answers the user’s question by declining to invent a number, satisfying B. The remaining statements are grounded in the sources: Nir studies Computer Science at Reichman University and has foundations in related courses/areas. The answer is clear, short, in Hebrew, and written in first person."
+            "feedback": "Neither the LinkedIn profile nor the personal summary mentions a GPA or grades, so correctly stating that the information is missing meets criterion C. The answer adds no invented numbers or claims (A) and answers the GPA question directly (B). It is short, in first person, entirely in Hebrew, and professional and friendly in tone (D). Offering to talk about my studies or projects instead is a reasonable, grounded follow-up."
           }
         }
       ],
       "final_status": "approved",
-      "shown_to_user": "אין לי נתון על הממוצע בתואר במקורות שברשותי, ולכן אני לא יכול למסור מספר מדויק.  \nאם תרצה, אני יכול כן לספר על הלימודים שלי במדעי המחשב באוניברסיטת רייכמן ועל הקורסים והתחומים שבהם אני מתמקד."
+      "shown_to_user": "אין לי במקורות מידע על ממוצע הציונים שלי בתואר, ולכן אני לא יכול למסור מספר מדויק. אם תרצה, אני יכול כן לספר על תחומי הלימוד שלי או על הפרויקטים והניסיון הרלוונטי שלי."
     }
   ],
   "displayed_conversation": [
@@ -36,7 +36,7 @@
     },
     {
       "role": "assistant",
-      "content": "אין לי נתון על הממוצע בתואר במקורות שברשותי, ולכן אני לא יכול למסור מספר מדויק.  \nאם תרצה, אני יכול כן לספר על הלימודים שלי במדעי המחשב באוניברסיטת רייכמן ועל הקורסים והתחומים שבהם אני מתמקד."
+      "content": "אין לי במקורות מידע על ממוצע הציונים שלי בתואר, ולכן אני לא יכול למסור מספר מדויק. אם תרצה, אני יכול כן לספר על תחומי הלימוד שלי או על הפרויקטים והניסיון הרלוונטי שלי."
     }
   ],
   "automatic_check": {

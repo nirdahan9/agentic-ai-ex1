@@ -4,8 +4,8 @@
   "title": "Follow-up question",
   "kind": "LLM",
   "actor_model": "gpt-5.4-mini-2026-03-17",
-  "evaluator": "gpt-5.4-2026-03-05",
-  "run_at": "2026-11-17T12:37:38.404879+00:00",
+  "evaluator": "claude-opus-5-5",
+  "run_at": "2026-11-17T13:00:26.554672+00:00",
   "expected": "Two turns in one conversation. The second relies on the first answer ('there'), and the answer keeps the context: Reichman University, June 2027.",
   "turns": [
     {
@@ -17,16 +17,26 @@
         {
           "attempt": 1,
           "candidate_source": "actor",
-          "candidate": "אני לומד מדעי המחשב באוניברסיטת רייכמן, במסגרת תואר ראשון, ואני סטודנט בשנה השלישית. לפי המקורות, הלימודים שלי החלו באוקטובר 2024 והם צפויים להסתיים ביוני 2027.",
+          "candidate": "אני לומד לתואר ראשון במדעי המחשב באוניברסיטת רייכמן. לפי המקורות, אני סטודנט בשנה השלישית, עם צפי סיום ביוני 2027.",
+          "evaluation": {
+            "completed": true,
+            "is_acceptable": false,
+            "feedback": "Criterion D fails. The facts are correct and supported by both sources: a BSc in Computer Science at Reichman University, third-year student, expected completion June 2027. The question is answered directly and the Hebrew terminology follows the glossary. However, the phrase \"לפי המקורות\" breaks the first-person persona, because Nir would not cite 'the sources' when describing his own studies. Remove \"לפי המקורות\" and state it directly, e.g. \"אני סטודנט בשנה השלישית, וצפוי לסיים ביוני 2027.\""
+          }
+        },
+        {
+          "attempt": 2,
+          "candidate_source": "actor_correction",
+          "candidate": "אני לומד לתואר ראשון במדעי המחשב באוניברסיטת רייכמן. אני סטודנט בשנה השלישית, וצפוי לסיים ביוני 2027.",
           "evaluation": {
             "completed": true,
             "is_acceptable": true,
-            "feedback": "Acceptable. The answer directly answers the question in Hebrew and in first person. Its claims are grounded in the sources: Reichman University, Computer Science, BSc in progress (LinkedIn Education), third-year student and expected June 2027 (LinkedIn About and personal summary), with the October 2024 start date from LinkedIn Education."
+            "feedback": "The answer is acceptable. Every claim is supported by both sources. He is studying for a BSc in Computer Science at Reichman University (LinkedIn Education section and the personal summary). He is a third-year student (LinkedIn About section and the personal summary). He is expected to finish in June 2027 (LinkedIn: October 2024 - June 2027; summary: 'expected June 2027'). The answer directly addresses where he studies. It is written in the first person, entirely in Hebrew, and is concise. It uses the glossary terms correctly: לומד לתואר ראשון, מדעי המחשב, אוניברסיטת רייכמן and סטודנט בשנה השלישית."
           }
         }
       ],
       "final_status": "approved",
-      "shown_to_user": "אני לומד מדעי המחשב באוניברסיטת רייכמן, במסגרת תואר ראשון, ואני סטודנט בשנה השלישית. לפי המקורות, הלימודים שלי החלו באוקטובר 2024 והם צפויים להסתיים ביוני 2027."
+      "shown_to_user": "אני לומד לתואר ראשון במדעי המחשב באוניברסיטת רייכמן. אני סטודנט בשנה השלישית, וצפוי לסיים ביוני 2027."
     },
     {
       "input": {
@@ -38,7 +48,7 @@
           },
           {
             "role": "assistant",
-            "content": "אני לומד מדעי המחשב באוניברסיטת רייכמן, במסגרת תואר ראשון, ואני סטודנט בשנה השלישית. לפי המקורות, הלימודים שלי החלו באוקטובר 2024 והם צפויים להסתיים ביוני 2027."
+            "content": "אני לומד לתואר ראשון במדעי המחשב באוניברסיטת רייכמן. אני סטודנט בשנה השלישית, וצפוי לסיים ביוני 2027."
           }
         ]
       },
@@ -46,16 +56,16 @@
         {
           "attempt": 1,
           "candidate_source": "actor",
-          "candidate": "אני צפוי לסיים את הלימודים ביוני 2027.",
+          "candidate": "אני צפוי לסיים ביוני 2027.",
           "evaluation": {
             "completed": true,
             "is_acceptable": true,
-            "feedback": "Acceptable. It directly answers the follow-up question using the prior context about studying at Reichman University, and the date 'June 2027' is explicitly supported by both the LinkedIn education section and the personal summary. The answer is clear, in Hebrew, first person, and contains no unsupported claims."
+            "feedback": "The answer meets all four criteria. A: The expected graduation date of June 2027 is supported by the LinkedIn profile (\"BSc (in progress), Computer Science (October 2024 - June 2027)\") and by the personal summary (\"B.Sc., expected June 2027\"). B: It directly answers the follow-up, correctly reading \"שם\" as Reichman University from the earlier turn. Although the date was already mentioned in the previous answer, a short confirmation is appropriate and does not needlessly repeat other details. C: Not applicable, since the information exists in the sources. D: The answer is concise, entirely in Hebrew, written in the first person, and professional in tone."
           }
         }
       ],
       "final_status": "approved",
-      "shown_to_user": "אני צפוי לסיים את הלימודים ביוני 2027."
+      "shown_to_user": "אני צפוי לסיים ביוני 2027."
     }
   ],
   "displayed_conversation": [
@@ -65,7 +75,7 @@
     },
     {
       "role": "assistant",
-      "content": "אני לומד מדעי המחשב באוניברסיטת רייכמן, במסגרת תואר ראשון, ואני סטודנט בשנה השלישית. לפי המקורות, הלימודים שלי החלו באוקטובר 2024 והם צפויים להסתיים ביוני 2027."
+      "content": "אני לומד לתואר ראשון במדעי המחשב באוניברסיטת רייכמן. אני סטודנט בשנה השלישית, וצפוי לסיים ביוני 2027."
     },
     {
       "role": "user",
@@ -73,7 +83,7 @@
     },
     {
       "role": "assistant",
-      "content": "אני צפוי לסיים את הלימודים ביוני 2027."
+      "content": "אני צפוי לסיים ביוני 2027."
     }
   ],
   "automatic_check": {

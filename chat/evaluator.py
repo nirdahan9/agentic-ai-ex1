@@ -1,8 +1,8 @@
-"""Evaluator (Critic): checks a candidate answer and returns a validated Evaluation."""
+"""Evaluator (Critic): Claude checks the Actor's candidate answer and returns a validated Evaluation."""
 
 import re
 
-from openai import OpenAI
+import anthropic
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from chat.config import EVALUATOR_MODEL, PERSON_NAME, PROMPTS_DIR
@@ -54,12 +54,17 @@ def build_messages(question: str, answer: str, history: list[dict], background: 
     return [{"role": "system", "content": system}, {"role": "user", "content": user}]
 
 
-def _response_format() -> dict:
-    """Ask the model for JSON matching the Evaluation schema."""
-    return {
-        "type": "json_schema",
-        "json_schema": {"name": "Evaluation", "schema": Evaluation.model_json_schema(), "strict": True},
-    }
+# JSON schema sent to Claude's structured output (output_config.format). It mirrors the
+# Evaluation model; the application still validates the result with Pydantic afterwards.
+EVALUATION_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "is_acceptable": {"type": "boolean"},
+        "feedback": {"type": "string"},
+    },
+    "required": ["is_acceptable", "feedback"],
+    "additionalProperties": False,
+}
 
 
 def evaluate(
@@ -67,29 +72,40 @@ def evaluate(
     answer: str,
     history: list[dict],
     background: str,
-    client: OpenAI | None = None,
+    client: anthropic.Anthropic | None = None,
     model: str = EVALUATOR_MODEL,
 ) -> Evaluation:
-    """Return a validated Evaluation, or raise EvaluationError on any technical failure."""
+    """Ask Claude (the Critic) to judge the Actor's answer.
+
+    Returns a validated Evaluation, or raises EvaluationError on any technical failure.
+    """
+    system, user = build_messages(question, answer, history, background)
     try:
-        client = client or OpenAI()
-        response = client.chat.completions.create(
+        client = client or anthropic.Anthropic()  # reads ANTHROPIC_API_KEY
+        response = client.beta.messages.create(
             model=model,
-            messages=build_messages(question, answer, history, background),
-            response_format=_response_format(),
+            max_tokens=16000,
+            system=system["content"],
+            messages=[user],
+            output_config={"effort": "high", "format": {"type": "json_schema", "schema": EVALUATION_SCHEMA}},
+            # If a safety classifier declines, the API retries on a fallback model in the same call.
+            betas=["server-side-fallback-2026-07-01"],
+            fallbacks="default",
         )
     except Exception as e:  # network, auth, rate limit, bad request...
         raise EvaluationError(f"evaluator call failed: {type(e).__name__}: {e}") from e
 
+    if getattr(response, "stop_reason", None) == "refusal":
+        raise EvaluationError(f"evaluator refused: {getattr(response, 'stop_details', None)}")
+    if getattr(response, "stop_reason", None) == "max_tokens":
+        raise EvaluationError("evaluator output was cut off (max_tokens)")
     try:
-        message = response.choices[0].message
-    except (AttributeError, IndexError, TypeError) as e:
+        text = next((b.text for b in response.content if b.type == "text"), "")
+    except (AttributeError, TypeError) as e:
         raise EvaluationError(f"unexpected evaluator response shape: {e}") from e
-    if getattr(message, "refusal", None):
-        raise EvaluationError(f"evaluator refused: {message.refusal}")
-    if not message.content:
+    if not text:
         raise EvaluationError("evaluator returned empty output")
     try:
-        return Evaluation.model_validate_json(message.content)
+        return Evaluation.model_validate_json(text)
     except ValidationError as e:
         raise EvaluationError(f"invalid evaluation output: {e.errors(include_url=False)}") from e

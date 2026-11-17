@@ -1,0 +1,83 @@
+{
+  "scenario": 2,
+  "scenario_id": "scenario-2",
+  "title": "Follow-up question",
+  "kind": "LLM",
+  "actor_model": "gpt-5.4-mini-2026-03-17",
+  "evaluator": "gpt-5.4-2026-03-05",
+  "run_at": "2026-11-17T12:37:38.404879+00:00",
+  "expected": "Two turns in one conversation. The second relies on the first answer ('there'), and the answer keeps the context: Reichman University, June 2027.",
+  "turns": [
+    {
+      "input": {
+        "question": "איפה אתה לומד?",
+        "history_sent_to_models": []
+      },
+      "attempts_log": [
+        {
+          "attempt": 1,
+          "candidate_source": "actor",
+          "candidate": "אני לומד מדעי המחשב באוניברסיטת רייכמן, במסגרת תואר ראשון, ואני סטודנט בשנה השלישית. לפי המקורות, הלימודים שלי החלו באוקטובר 2024 והם צפויים להסתיים ביוני 2027.",
+          "evaluation": {
+            "completed": true,
+            "is_acceptable": true,
+            "feedback": "Acceptable. The answer directly answers the question in Hebrew and in first person. Its claims are grounded in the sources: Reichman University, Computer Science, BSc in progress (LinkedIn Education), third-year student and expected June 2027 (LinkedIn About and personal summary), with the October 2024 start date from LinkedIn Education."
+          }
+        }
+      ],
+      "final_status": "approved",
+      "shown_to_user": "אני לומד מדעי המחשב באוניברסיטת רייכמן, במסגרת תואר ראשון, ואני סטודנט בשנה השלישית. לפי המקורות, הלימודים שלי החלו באוקטובר 2024 והם צפויים להסתיים ביוני 2027."
+    },
+    {
+      "input": {
+        "question": "ומתי אתה צפוי לסיים את הלימודים שם?",
+        "history_sent_to_models": [
+          {
+            "role": "user",
+            "content": "איפה אתה לומד?"
+          },
+          {
+            "role": "assistant",
+            "content": "אני לומד מדעי המחשב באוניברסיטת רייכמן, במסגרת תואר ראשון, ואני סטודנט בשנה השלישית. לפי המקורות, הלימודים שלי החלו באוקטובר 2024 והם צפויים להסתיים ביוני 2027."
+          }
+        ]
+      },
+      "attempts_log": [
+        {
+          "attempt": 1,
+          "candidate_source": "actor",
+          "candidate": "אני צפוי לסיים את הלימודים ביוני 2027.",
+          "evaluation": {
+            "completed": true,
+            "is_acceptable": true,
+            "feedback": "Acceptable. It directly answers the follow-up question using the prior context about studying at Reichman University, and the date 'June 2027' is explicitly supported by both the LinkedIn education section and the personal summary. The answer is clear, in Hebrew, first person, and contains no unsupported claims."
+          }
+        }
+      ],
+      "final_status": "approved",
+      "shown_to_user": "אני צפוי לסיים את הלימודים ביוני 2027."
+    }
+  ],
+  "displayed_conversation": [
+    {
+      "role": "user",
+      "content": "איפה אתה לומד?"
+    },
+    {
+      "role": "assistant",
+      "content": "אני לומד מדעי המחשב באוניברסיטת רייכמן, במסגרת תואר ראשון, ואני סטודנט בשנה השלישית. לפי המקורות, הלימודים שלי החלו באוקטובר 2024 והם צפויים להסתיים ביוני 2027."
+    },
+    {
+      "role": "user",
+      "content": "ומתי אתה צפוי לסיים את הלימודים שם?"
+    },
+    {
+      "role": "assistant",
+      "content": "אני צפוי לסיים את הלימודים ביוני 2027."
+    }
+  ],
+  "automatic_check": {
+    "flow_as_expected": true,
+    "detail": "every turn ended approved"
+  }
+}

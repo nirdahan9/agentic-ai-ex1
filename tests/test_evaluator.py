@@ -8,14 +8,19 @@ from pydantic import ValidationError
 from chat.evaluator import Evaluation, EvaluationError, build_messages, evaluate
 
 
-def fake_client(content=None, refusal=None, error=None):
+def fake_client(content=None, refusal=None, error=None, stop_reason="end_turn"):
+    """A stand-in for anthropic.Anthropic(): client.beta.messages.create(...)."""
     def create(**kwargs):
         if error:
             raise error
-        message = SimpleNamespace(content=content, refusal=refusal)
-        return SimpleNamespace(choices=[SimpleNamespace(message=message)])
+        if refusal:
+            return SimpleNamespace(stop_reason="refusal", stop_details=refusal, content=[])
+        blocks = [SimpleNamespace(type="thinking", thinking="")]
+        if content is not None:
+            blocks.append(SimpleNamespace(type="text", text=content))
+        return SimpleNamespace(stop_reason=stop_reason, stop_details=None, content=blocks)
 
-    return SimpleNamespace(chat=SimpleNamespace(completions=SimpleNamespace(create=create)))
+    return SimpleNamespace(beta=SimpleNamespace(messages=SimpleNamespace(create=create)))
 
 
 # --- Evaluation schema -------------------------------------------------------
@@ -94,10 +99,32 @@ def test_technical_failures_raise_evaluation_error(client):
 
 
 def test_unexpected_response_shape_raises_evaluation_error():
-    client = SimpleNamespace(chat=SimpleNamespace(completions=SimpleNamespace(
-        create=lambda **kw: SimpleNamespace(choices=[]))))
+    client = SimpleNamespace(beta=SimpleNamespace(messages=SimpleNamespace(
+        create=lambda **kw: SimpleNamespace(stop_reason="end_turn", content=None))))
     with pytest.raises(EvaluationError):
         evaluate("q", "a", [], "b", client=client)
+
+
+def test_truncated_output_raises_evaluation_error():
+    with pytest.raises(EvaluationError):
+        evaluate("q", "a", [], "b", client=fake_client('{"is_acceptable": tr', stop_reason="max_tokens"))
+
+
+def test_evaluator_request_uses_claude_with_structured_output():
+    captured = {}
+
+    def create(**kwargs):
+        captured.update(kwargs)
+        return SimpleNamespace(stop_reason="end_turn", content=[
+            SimpleNamespace(type="text", text='{"is_acceptable": true, "feedback": "ok"}')])
+
+    client = SimpleNamespace(beta=SimpleNamespace(messages=SimpleNamespace(create=create)))
+    evaluate("q", "a", [], "b", client=client)
+    assert captured["model"].startswith("claude-")
+    schema = captured["output_config"]["format"]["schema"]
+    assert schema["required"] == ["is_acceptable", "feedback"]
+    assert schema["additionalProperties"] is False
+    assert captured["messages"][0]["role"] == "user" and "Criteria" in captured["system"]
 
 
 def test_placeholder_text_inside_materials_is_not_substituted():

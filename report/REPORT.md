@@ -1,14 +1,14 @@
 # Personal Chat with an Answer Evaluator and an Improvement Loop — Report
 
 **Assignment 1, AI Systems** · Submitted by: Nir Dahan, Liav Sarfati, Eden Malka  
-Actor: `gpt-5.4-mini-2026-03-17` · Evaluator: `gpt-5.4-2026-03-05`
+Actor: OpenAI `gpt-5.4-mini-2026-03-17` · Evaluator: Anthropic `claude-opus-5-5`
 
 ## 1. System overview
 
-The chat represents Nir Dahan, one of the team members, and it answers only from two background sources about Nir: a LinkedIn export and a half-page personal summary. Every question goes through a generate → evaluate → correct loop (`chat/loop.py`; see the architecture diagram on page 3).
+The chat represents Nir Dahan, one of the team members. It answers only from two background sources about Nir: a LinkedIn export and a half-page personal summary. Every question goes through a generate → evaluate → correct loop (`chat/loop.py`; see the architecture diagram on page 3).
 
-- **Actor.** It receives the sources, the conversation history and the question, and writes a candidate answer.
-- **Evaluator.** It is a separate call with its own prompts. It receives the question, the candidate, the sources and the relevant history, and checks four criteria: grounding, answering the question, handling missing information, and clarity and style. It returns JSON that is validated against a Pydantic model, `Evaluation(is_acceptable: bool, feedback: str)`.
+- **Actor (OpenAI).** It receives the sources, the conversation history and the question, and writes a candidate answer.
+- **Evaluator (Claude).** It comes from a different provider, with its own call, prompts and API key. It receives the question, the candidate, the sources and the relevant history, and checks four criteria: grounding, answering the question, handling missing information, and clarity and style. It returns structured JSON, which the application validates against a Pydantic model, `Evaluation(is_acceptable: bool, feedback: str)`.
 - **Decision.** Only the validated boolean decides what happens next:
     - **Approved:** the answer is shown and added to the history.
     - **Rejected, with attempts left:** the rejected answer and the feedback go back to the Actor (`prompts/actor_revision.md`).
@@ -22,52 +22,54 @@ All five scenarios behaved as expected (`results/part_d_results.md`). Scenarios 
 
 **Scenario 4 (controlled).** For the question "<bdi>איפה עבדת לפני Via.AI?</bdi>" ("Where did you work before Via.AI?"), we injected a flawed first draft. It claimed two years as a Backend developer at Wix and leading a microservices migration. None of this is in the sources.
 
-The evaluator rejected the draft. Its feedback named each invented claim (Wix, Backend, two years, microservices), quoted what the sources actually say (IDF Logistics Officer, August 2019 – July 2024), and gave a concrete instruction: answer with the IDF service, and say that the sources do not list a Wix role.
+The evaluator rejected the draft and its feedback did three things:
 
-The Actor received the rejected draft and this feedback, and its correction followed both instructions:
+- it named the invented employer and the invented achievement;
+- it stated what the sources actually say (five years as an IDF Logistics Officer, 2019–2024) and suggested details to add (four roles; קמב״ץ in the Iron Swords war);
+- it noted that "Backend" should not stay in English.
 
-> <p dir="rtl">לפני Via.AI שירתי בצה״ל כקצין לוגיסטיקה, בין אוגוסט 2019 ליולי 2024. אין לי במקורות מידע על עבודה ב־Wix או על תפקיד אחר לפני Via.AI.</p>
+The Actor received the draft and this feedback, and its correction followed each point:
+
+> <p dir="rtl">לפני Via.AI שירתי חמש שנים בצה״ל כקצין לוגיסטיקה, בין אוגוסט 2019 ליולי 2024. במהלך השירות החזקתי ארבעה תפקידים ביחידות שטח ובמטה, ובמלחמת חרבות ברזל שימשתי כקמב״ץ במפקדת קצין הלוגיסטיקה הראשי.</p>
 >
-> ("Before Via.AI I served in the IDF as a Logistics Officer, August 2019 – July 2024. The sources have no information about work at Wix or another role before Via.AI.")
+> ("Before Via.AI I served five years in the IDF as a Logistics Officer, August 2019 – July 2024. I held four roles in field units and at HQ, and in the Iron Swords war I served as Operations Officer at the Chief Logistics Officer HQ.")
 
 The evaluator re-checked this version and approved it.
 
-**A natural case from live use.** In a follow-up about the location of Nir's army service, the Actor wrote the military role title with its letters swapped ("<bdi>מקב״ץ</bdi>" instead of "<bdi>קמב״ץ</bdi>"). The evaluator rejected the answer and spelled out the exact fix. The second attempt changed only that word and was approved.
+**A natural case, with no injected draft (scenario 2).** The Actor answered "where do you study?" correctly but wrote "<bdi>לפי המקורות</bdi>" ("according to the sources"). The evaluator rejected the answer because this breaks the first-person voice, and it quoted the phrase with a replacement. The second attempt removed exactly that phrase, kept the facts, and was approved. Only the approved version entered the history used by the follow-up question.
 
-In both cases the correction was targeted: the Actor fixed what the feedback named and kept the rest. The mock run in scenario 5 shows the other side. When the feedback named no concrete problem, attempts 2 and 3 were nearly identical to attempt 1. The loop is only as useful as the feedback it carries.
+In both cases the correction was targeted: the Actor fixed what the feedback named and kept the rest. The mock run in scenario 5 shows the other side. When the feedback named no concrete problem, attempts 2 and 3 were only rephrasings of attempt 1. The loop is only as useful as the feedback it carries.
 
 ## 3. Why schema validity does not guarantee a correct answer
 
-Pydantic validation, together with OpenAI's strict JSON schema, guarantees the *form* of the evaluation. It guarantees there are exactly two fields, a real boolean (the string `"true"` is rejected), a non-empty feedback string, and no extra keys. This lets the loop branch on `is_acceptable` instead of searching free text for keywords. A simulated test showed the other direction too: an output of `{"is_acceptable": true}` without feedback failed validation and ended as a technical error, not as an approval.
+Pydantic validation, together with structured output, guarantees the *form* of the evaluation. It guarantees there are exactly two fields, a real boolean (the string `"true"` is rejected), a non-empty feedback string, and no extra keys. This lets the loop branch on `is_acceptable` instead of searching free text for keywords. A simulated test showed the other direction too: an output of `{"is_acceptable": true}` without feedback failed validation and ended as a technical error, not as an approval.
 
-But a perfectly valid object can still carry a **wrong decision**. Validation never looks at the answer, the sources or the question. It only checks that the evaluator *said something* in the right shape. The `true` comes from another language model reading the sources, with the same kinds of blind spots as the Actor. Our runs include valid evaluations with flawed content:
+But a perfectly valid object can still carry a **wrong decision**. Validation never looks at the answer, the sources or the question. It only checks that the evaluator *said something* in the right shape. The `true` comes from another language model's judgment. Our runs include valid evaluations with flawed content:
 
-- An approved answer said "<bdi>שירתי</bdi>", a misspelling of "<bdi>שירתתי</bdi>" ("I served"), although criterion D covers clarity.
-- A correct rejection gave a factually wrong explanation. It translated "<bdi>אלוף־משנה</bdi>" as "Lieutenant Colonel"; it is actually Colonel.
+- The approved correction in scenario 4 says "<bdi>שירתי</bdi>", a misspelling of "<bdi>שירתתי</bdi>" ("I served"), although criterion D covers clarity.
+- The same issue, the meta phrase "<bdi>לפי המקורות</bdi>", led to a rejection in three answers and was accepted in a fourth. Each of these decisions was schema-valid.
+- With the earlier evaluator (`gpt-5.4`), a correct rejection gave a factually wrong explanation: it translated "<bdi>אלוף־משנה</bdi>" as "Lieutenant Colonel"; it is actually Colonel.
 
 Schema validity means "the judge returned a well-formed verdict", not "the verdict is right". That is why the assignment asks for a manual check against the sources.
 
 ## 4. Evaluator limitations found in the manual check
 
-We checked every claim in the approved answers against `data/` (`results/part_b_manual_check.md`). The evaluator caught real hallucinations by the Actor:
+We checked every claim in the approved answers against `data/` (`results/part_b_manual_check.md`). The evaluator caught real problems in the Actor's answers:
 
-- a wrong rank: Colonel instead of Brigadier General (תת־אלוף);
-- the word "betting" for a prediction competition.
+- an offer to describe Nir's role in DerbyUp, which the sources do not contain;
+- a repeated word ("<bdi>לומד לומד</bdi>");
+- a meta phrase that broke the first-person voice.
 
-The main limitation is that **small stretches of the sources pass**:
+The limitations we found:
 
-- The skill label "Software Development" became "I have experience in software development".
-- "Strong foundations in" data structures, algorithms and ML became "my studies focus on" them.
+- **Inconsistent standard.** The same phrase was a reason to reject in one run and was accepted in another. A single LLM judgment is not a stable rule.
+- **Small stretches pass.** In an approved answer, the source's "impactful teams" became "a strong development team", and general values became job preferences. The evaluator judges grounding by overall meaning, so a plausible rewording that slightly overstates a source is not flagged. Only invented entities, such as a new employer or a new rank, are reliably caught.
+- **Language errors are caught only sometimes.** "<bdi>לומד לומד</bdi>" was caught, but "<bdi>שירתי</bdi>" was approved.
 
-Both answers were approved. The evaluator judges grounding by overall meaning, so a plausible rewording that slightly overstates a source is not flagged. Only invented entities, such as a new employer or a new rank, are reliably caught.
-
-Smaller issues:
-
-- **Over-labelled criteria.** A fabricated-fact answer was marked "Fails A, B and C" in repeated runs, when only A applies.
-- **Missed spelling.** Hebrew spelling mistakes were not caught (above).
+We first ran the system with an OpenAI evaluator (`gpt-5.4`; results archived in `results/previous_evaluator_gpt-5.4/`). Moving the evaluator to a different provider made its criterion labels precise and caught the unsupported offer, which the earlier evaluator missed. The stretch and spelling limitations remained with both.
 
 **Possible improvements:**
 
 - Ask the evaluator to list each factual claim with the source line that supports it, which makes stretches visible.
-- Add an explicit rule against upgrading skills to experience.
+- Add explicit rules for meta phrases and spelling, so these are judged consistently.
 - Keep the manual check, because a valid schema cannot replace it.

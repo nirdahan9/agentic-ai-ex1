@@ -4,8 +4,8 @@
   "title": "Rejection and improvement",
   "kind": "LLM (injected flawed first draft)",
   "actor_model": "gpt-5.4-mini-2026-03-17",
-  "evaluator": "gpt-5.4-2026-03-05",
-  "run_at": "2026-11-17T12:37:52.124300+00:00",
+  "evaluator": "claude-opus-5-5",
+  "run_at": "2026-11-17T13:00:43.223617+00:00",
   "expected": "The injected draft with an invented personal fact is rejected with a reasoned feedback. The Actor's corrected version is evaluated again and approved.",
   "turns": [
     {
@@ -22,22 +22,22 @@
           "evaluation": {
             "completed": true,
             "is_acceptable": false,
-            "feedback": "Fails A, B, and C. The answer invents an unsupported role and employer: there is no source stating Nir worked at Wix, as a Backend developer, for two years, or led a microservices migration. According to the sources, before Via.AI he served in the צה״ל as a קצין לוגיסטיקה from August 2019 to July 2024. Correct by answering that before Via.AI he served in the IDF as a Logistics Officer, and mention that the sources do not list any Wix role."
+            "feedback": "Fails A: the claim that I worked two years as a Backend developer at Wix and led a move to a microservices architecture appears nowhere in the sources. Both the employer and the achievement are fabricated. Remove the claim entirely. Fails B: the sources do answer the question. Before Via.AI (since August 2026), my only listed role is five years in the IDF as a Logistics Officer (August 2019 – July 2024). Answer with that: 'שירתתי חמש שנים בצה״ל כקצין לוגיסטיקה'. You may briefly add details from the sources, such as four roles in field units and at HQ, or serving as קמב״ץ at the Logistics Command HQ during the Iron Swords war. Fails D: 'Backend' is left in English and is not on the Keep in English list. This becomes moot once the fabricated claim is removed."
           }
         },
         {
           "attempt": 2,
           "candidate_source": "actor_correction",
-          "candidate": "לפני Via.AI שירתי בצה״ל כקצין לוגיסטיקה, בין אוגוסט 2019 ליולי 2024. אין לי במקורות מידע על עבודה ב־Wix או על תפקיד אחר לפני Via.AI.",
+          "candidate": "לפני Via.AI שירתי חמש שנים בצה״ל כקצין לוגיסטיקה, בין אוגוסט 2019 ליולי 2024. במהלך השירות החזקתי ארבעה תפקידים ביחידות שטח ובמטה, ובמלחמת חרבות ברזל שימשתי כקמב״ץ במפקדת קצין הלוגיסטיקה הראשי.",
           "evaluation": {
             "completed": true,
             "is_acceptable": true,
-            "feedback": "Acceptable. It directly answers the question using the sources: both the LinkedIn profile and personal summary state that before Via.AI Nir served in the IDF as a Logistics Officer from August 2019 to July 2024. The added clarification that the sources do not mention Wix or another prior role is a valid handling of missing information, and the answer is clear, first-person, in Hebrew, and concise."
+            "feedback": "Every claim is supported by the sources. The LinkedIn Experience section and the personal summary both state five years as an IDF Logistics Officer (August 2019 – July 2024), four roles across field units and HQ, and service as Operations Officer at the Logistics Command HQ during the Iron Swords war. The answer addresses the question directly by naming the prior role before Via.AI. It is concise, written in the first person, entirely in Hebrew, and uses the glossary terms correctly (קצין לוגיסטיקה, יחידות שטח, מטה, קמב״ץ, מפקדת קצין הלוגיסטיקה הראשי, מלחמת חרבות ברזל)."
           }
         }
       ],
       "final_status": "approved",
-      "shown_to_user": "לפני Via.AI שירתי בצה״ל כקצין לוגיסטיקה, בין אוגוסט 2019 ליולי 2024. אין לי במקורות מידע על עבודה ב־Wix או על תפקיד אחר לפני Via.AI."
+      "shown_to_user": "לפני Via.AI שירתי חמש שנים בצה״ל כקצין לוגיסטיקה, בין אוגוסט 2019 ליולי 2024. במהלך השירות החזקתי ארבעה תפקידים ביחידות שטח ובמטה, ובמלחמת חרבות ברזל שימשתי כקמב״ץ במפקדת קצין הלוגיסטיקה הראשי."
     }
   ],
   "displayed_conversation": [
@@ -47,7 +47,7 @@
     },
     {
       "role": "assistant",
-      "content": "לפני Via.AI שירתי בצה״ל כקצין לוגיסטיקה, בין אוגוסט 2019 ליולי 2024. אין לי במקורות מידע על עבודה ב־Wix או על תפקיד אחר לפני Via.AI."
+      "content": "לפני Via.AI שירתי חמש שנים בצה״ל כקצין לוגיסטיקה, בין אוגוסט 2019 ליולי 2024. במהלך השירות החזקתי ארבעה תפקידים ביחידות שטח ובמטה, ובמלחמת חרבות ברזל שימשתי כקמב״ץ במפקדת קצין הלוגיסטיקה הראשי."
     }
   ],
   "automatic_check": {

@@ -53,7 +53,7 @@
 
     <!-- Actor -->
     <rect x="620" y="320" width="360" height="110" rx="10" fill="#fff3e0" stroke="#e65100" stroke-width="2.5"/>
-    <text x="800" y="350" text-anchor="middle" font-size="19" font-weight="bold" fill="#bf360c">ACTOR (answer generator)</text>
+    <text x="800" y="350" text-anchor="middle" font-size="19" font-weight="bold" fill="#bf360c">ACTOR (answer generator) · OpenAI</text>
     <text x="800" y="377" text-anchor="middle" font-size="14" fill="#222">chat/actor.py · gpt-5.4-mini-2026-03-17</text>
     <text x="800" y="400" text-anchor="middle" font-size="14" fill="#222">prompts/actor_system.md + glossary.md</text>
 
@@ -65,8 +65,8 @@
     <!-- Evaluator -->
     <path d="M800,526 L800,562" stroke="#333" stroke-width="2" marker-end="url(#ah-black)"/>
     <rect x="620" y="566" width="360" height="124" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2.5"/>
-    <text x="800" y="594" text-anchor="middle" font-size="19" font-weight="bold" fill="#1b5e20">EVALUATOR (Critic)</text>
-    <text x="800" y="619" text-anchor="middle" font-size="14" fill="#222">chat/evaluator.py · gpt-5.4-2026-03-05</text>
+    <text x="800" y="594" text-anchor="middle" font-size="19" font-weight="bold" fill="#1b5e20">EVALUATOR (Critic) · Anthropic Claude</text>
+    <text x="800" y="619" text-anchor="middle" font-size="14" fill="#222">chat/evaluator.py · claude-opus-5-5</text>
     <text x="800" y="642" text-anchor="middle" font-size="14" fill="#222">evaluator_system.md + evaluator_user.md</text>
     <text x="800" y="668" text-anchor="middle" font-size="13.5" font-style="italic" fill="#444">input: question · candidate · sources · history</text>
 

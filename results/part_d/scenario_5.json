@@ -5,7 +5,7 @@
   "kind": "MOCK (control-flow test)",
   "actor_model": "gpt-5.4-mini-2026-03-17",
   "evaluator": "MOCK evaluator (control-flow test): rejects every attempt",
-  "run_at": "2026-11-17T12:37:57.735081+00:00",
+  "run_at": "2026-11-17T13:00:47.944497+00:00",
   "expected": "Three attempts, all rejected, then a stop after the third and the 'no approved answer' message. No rejected answer is shown.",
   "turns": [
     {
@@ -17,7 +17,7 @@
         {
           "attempt": 1,
           "candidate_source": "actor",
-          "candidate": "GroupShield הוא בוט שבניתי שמנטר התנהגות ושפה לא הולמת בקבוצות. מעבר לזה, אין לי במקורות פירוט נוסף על איך הוא עובד או באילו פלטפורמות הוא פועל.",
+          "candidate": "GroupShield הוא בוט שבניתי שמנטר התנהגות ושפה לא הולמת בקבוצות. זה אחד מהפרויקטים שלי, אבל אין לי במקורות פירוט נוסף על איך הוא עובד בפועל או באילו טכנולוגיות השתמשתי בו.",
           "evaluation": {
             "completed": true,
             "is_acceptable": false,
@@ -27,7 +27,7 @@
         {
           "attempt": 2,
           "candidate_source": "actor_correction",
-          "candidate": "GroupShield הוא בוט שבניתי שמנטר התנהגות ושפה לא הולמת בקבוצות. מעבר לזה, אין לי במקורות פירוט נוסף על אופן הפעולה שלו או על הפלטפורמה שבה הוא פועל.",
+          "candidate": "GroupShield הוא בוט שבניתי שמנטר התנהגות ושפה לא הולמת בקבוצות. אין לי במקורות פירוט נוסף על אופן הפעולה שלו או על הטכנולוגיות ששימשו בו.",
           "evaluation": {
             "completed": true,
             "is_acceptable": false,
@@ -37,7 +37,7 @@
         {
           "attempt": 3,
           "candidate_source": "actor_correction",
-          "candidate": "GroupShield הוא בוט שבניתי שמנטר התנהגות ושפה לא הולמת בקבוצות. מעבר לזה, אין לי במקורות פירוט נוסף על אופן הפעולה שלו או על הפלטפורמה שבה הוא פועל.",
+          "candidate": "GroupShield הוא בוט שבניתי שמנטר התנהגות ושפה לא הולמת בקבוצות. אין לי במקורות פירוט נוסף על איך הוא עובד או באילו טכנולוגיות השתמשתי בו.",
           "evaluation": {
             "completed": true,
             "is_acceptable": false,

@@ -4,8 +4,8 @@
   "title": "Question about existing information",
   "kind": "LLM",
   "actor_model": "gpt-5.4-mini-2026-03-17",
-  "evaluator": "gpt-5.4-2026-03-05",
-  "run_at": "2026-11-17T12:37:30.225186+00:00",
+  "evaluator": "claude-opus-5-5",
+  "run_at": "2026-11-17T13:00:09.572470+00:00",
   "expected": "An approved answer that is supported by a specific detail in the sources.",
   "turns": [
     {
@@ -17,16 +17,16 @@
         {
           "attempt": 1,
           "candidate_source": "actor",
-          "candidate": "אני עובד היום ב־Via.AI בתפקיד מהנדס QA. אני עוסק בבדיקות ידניות ואוטומטיות של מוצרי תיירות מבוססי בינה מלאכותית, ועובד בשיתוף פעולה עם צוות הפיתוח.",
+          "candidate": "אני עובד היום ב־Via.AI בתפקיד מהנדס QA, ומאז אוגוסט 2026. במסגרת התפקיד אני בודק מוצרי תיירות מבוססי בינה מלאכותית, מבצע בדיקות ידניות ואוטומטיות, ועובד בשיתוף פעולה הדוק עם צוות הפיתוח.",
           "evaluation": {
             "completed": true,
             "is_acceptable": true,
-            "feedback": "The answer is supported by both sources: LinkedIn and the personal summary state that Nir works at Via.AI as a QA Engineer, testing AI-powered travel products with manual and automated testing in collaboration with the development/development team. It directly answers the user's question, stays concise, and is written in first-person Hebrew with the correct translated terms."
+            "feedback": "Every claim is supported by both the LinkedIn profile and the personal summary: QA Engineer at Via.AI since August 2026, testing AI-powered travel products, manual and automated testing, and close collaboration with the development team. The answer directly addresses both parts of the question (where I work and what my role is). It is in first-person Hebrew with a professional tone and uses the glossary forms (מהנדס QA, מוצרי תיירות מבוססי בינה מלאכותית, בדיקות ידניות ואוטומטיות, צוות הפיתוח). English is kept only for approved terms (Via.AI, QA). The phrasing \"ומאז אוגוסט 2026\" is slightly awkward, but it does not affect clarity."
           }
         }
       ],
       "final_status": "approved",
-      "shown_to_user": "אני עובד היום ב־Via.AI בתפקיד מהנדס QA. אני עוסק בבדיקות ידניות ואוטומטיות של מוצרי תיירות מבוססי בינה מלאכותית, ועובד בשיתוף פעולה עם צוות הפיתוח."
+      "shown_to_user": "אני עובד היום ב־Via.AI בתפקיד מהנדס QA, ומאז אוגוסט 2026. במסגרת התפקיד אני בודק מוצרי תיירות מבוססי בינה מלאכותית, מבצע בדיקות ידניות ואוטומטיות, ועובד בשיתוף פעולה הדוק עם צוות הפיתוח."
     }
   ],
   "displayed_conversation": [
@@ -36,7 +36,7 @@
     },
     {
       "role": "assistant",
-      "content": "אני עובד היום ב־Via.AI בתפקיד מהנדס QA. אני עוסק בבדיקות ידניות ואוטומטיות של מוצרי תיירות מבוססי בינה מלאכותית, ועובד בשיתוף פעולה עם צוות הפיתוח."
+      "content": "אני עובד היום ב־Via.AI בתפקיד מהנדס QA, ומאז אוגוסט 2026. במסגרת התפקיד אני בודק מוצרי תיירות מבוססי בינה מלאכותית, מבצע בדיקות ידניות ואוטומטיות, ועובד בשיתוף פעולה הדוק עם צוות הפיתוח."
     }
   ],
   "automatic_check": {

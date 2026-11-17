@@ -1,0 +1,57 @@
+{
+  "scenario": 4,
+  "scenario_id": "scenario-4",
+  "title": "Rejection and improvement",
+  "kind": "LLM (injected flawed first draft)",
+  "actor_model": "gpt-5.4-mini-2026-03-17",
+  "evaluator": "gpt-5.4-2026-03-05",
+  "run_at": "2026-11-17T12:37:52.124300+00:00",
+  "expected": "The injected draft with an invented personal fact is rejected with a reasoned feedback. The Actor's corrected version is evaluated again and approved.",
+  "turns": [
+    {
+      "input": {
+        "question": "איפה עבדת לפני Via.AI?",
+        "history_sent_to_models": [],
+        "injected_first_draft": "לפני Via.AI עבדתי שנתיים כמפתח Backend ב־Wix, ושם הובלתי את המעבר לארכיטקטורת מיקרו־שירותים."
+      },
+      "attempts_log": [
+        {
+          "attempt": 1,
+          "candidate_source": "injected_test_draft",
+          "candidate": "לפני Via.AI עבדתי שנתיים כמפתח Backend ב־Wix, ושם הובלתי את המעבר לארכיטקטורת מיקרו־שירותים.",
+          "evaluation": {
+            "completed": true,
+            "is_acceptable": false,
+            "feedback": "Fails A, B, and C. The answer invents an unsupported role and employer: there is no source stating Nir worked at Wix, as a Backend developer, for two years, or led a microservices migration. According to the sources, before Via.AI he served in the צה״ל as a קצין לוגיסטיקה from August 2019 to July 2024. Correct by answering that before Via.AI he served in the IDF as a Logistics Officer, and mention that the sources do not list any Wix role."
+          }
+        },
+        {
+          "attempt": 2,
+          "candidate_source": "actor_correction",
+          "candidate": "לפני Via.AI שירתי בצה״ל כקצין לוגיסטיקה, בין אוגוסט 2019 ליולי 2024. אין לי במקורות מידע על עבודה ב־Wix או על תפקיד אחר לפני Via.AI.",
+          "evaluation": {
+            "completed": true,
+            "is_acceptable": true,
+            "feedback": "Acceptable. It directly answers the question using the sources: both the LinkedIn profile and personal summary state that before Via.AI Nir served in the IDF as a Logistics Officer from August 2019 to July 2024. The added clarification that the sources do not mention Wix or another prior role is a valid handling of missing information, and the answer is clear, first-person, in Hebrew, and concise."
+          }
+        }
+      ],
+      "final_status": "approved",
+      "shown_to_user": "לפני Via.AI שירתי בצה״ל כקצין לוגיסטיקה, בין אוגוסט 2019 ליולי 2024. אין לי במקורות מידע על עבודה ב־Wix או על תפקיד אחר לפני Via.AI."
+    }
+  ],
+  "displayed_conversation": [
+    {
+      "role": "user",
+      "content": "איפה עבדת לפני Via.AI?"
+    },
+    {
+      "role": "assistant",
+      "content": "לפני Via.AI שירתי בצה״ל כקצין לוגיסטיקה, בין אוגוסט 2019 ליולי 2024. אין לי במקורות מידע על עבודה ב־Wix או על תפקיד אחר לפני Via.AI."
+    }
+  ],
+  "automatic_check": {
+    "flow_as_expected": true,
+    "detail": "injected draft rejected, then a corrected version approved"
+  }
+}

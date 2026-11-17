@@ -4,20 +4,20 @@
   "expected": "accept",
   "question": "איפה אתה עובד היום?",
   "history": [],
-  "candidate_answer": "אני עובד ב־Via.AI כ־QA Engineer מאז אוגוסט 2026, ובודק מוצרי travel מבוססי AI בבדיקות ידניות ואוטומטיות.",
-  "evaluator_model": "gpt-5.4-2026-03-05",
+  "candidate_answer": "אני עובד היום ב־Via.AI בתפקיד מהנדס QA, ובודק מוצרי תיירות מבוססי בינה מלאכותית בבדיקות ידניות ואוטומטיות.",
+  "evaluator_model": "claude-opus-5-5",
   "is_acceptable": true,
-  "feedback": "Acceptable. The answer is fully grounded in the sources: both the LinkedIn profile and personal summary state that Nir works at Via.AI as a QA Engineer since August 2026, testing AI-powered travel products with manual and automated testing. It directly answers the user's question, stays in Hebrew and first person, and is concise and clear."
+  "feedback": "Acceptable. Every claim is supported by the sources. Both the LinkedIn profile and the personal summary state that Nir currently works at Via.AI as a QA Engineer (since August 2026). Both also say he tests AI-powered travel products manually and with automated tests. The answer directly addresses the question of where he works today. It is concise, in the first person, and entirely in Hebrew. It follows the glossary: מהנדס QA, מוצרי תיירות מבוססי בינה מלאכותית, and בדיקות ידניות ואוטומטיות. Only approved English is kept (Via.AI, QA)."
  },
  {
   "case": "fabricated",
   "expected": "reject (A)",
   "question": "איפה אתה עובד היום?",
   "history": [],
-  "candidate_answer": "אני עובד ב־Via.AI כ־Team Lead של צוות QA בן 6 אנשים מאז 2025, ולפני כן עבדתי שנתיים ב־Google.",
-  "evaluator_model": "gpt-5.4-2026-03-05",
+  "candidate_answer": "אני עובד ב־Via.AI כראש צוות QA של 6 אנשים מאז 2025, ולפני כן עבדתי שנתיים ב־Google.",
+  "evaluator_model": "claude-opus-5-5",
   "is_acceptable": false,
-  "feedback": "Fails criteria A, B, and C. The answer contains multiple unsupported claims about Nir Dahan: the sources say he works at Via.AI as a QA Engineer since August 2026, not a 'Team Lead' managing a 6-person QA team, and there is no source support for 'since 2025' or for previously working two years at Google. To correct it, answer simply that he works today at Via.AI as a QA Engineer, and if needed mention that he has been there since August 2026."
+  "feedback": "Criterion A fails. The answer contains several fabricated claims that the sources contradict. (1) It calls the role 'ראש צוות QA של 6 אנשים' (QA team lead of 6 people). The sources say he is a QA Engineer and mention no team-lead role and no team size. (2) It gives the start as 'מאז 2025'. Both sources say he started in August 2026. (3) It says he 'worked two years at Google before'. No source mentions Google; before Via.AI he served in the IDF (2019–2024) and then studied. Fix: remove the team-lead title, the team size and the Google claim, and change the date to August 2026. State that I work as a מהנדס QA at Via.AI since August 2026, testing מוצרי תיירות מבוססי בינה מלאכותית with בדיקות ידניות ואוטומטיות alongside צוות הפיתוח. Optionally add that I combine the job with my studies for a תואר ראשון in מדעי המחשב at אוניברסיטת רייכמן."
  },
  {
   "case": "missing-info",
@@ -25,19 +25,19 @@
   "question": "מה הממוצע שלך בתואר?",
   "history": [],
   "candidate_answer": "המקורות שלי לא מציינים את הממוצע שלי בתואר, ולכן אני לא יכול למסור אותו.",
-  "evaluator_model": "gpt-5.4-2026-03-05",
+  "evaluator_model": "claude-opus-5-5",
   "is_acceptable": true,
-  "feedback": "Acceptable. It directly answers the user's question by stating that the sources do not provide Nir Dahan's university GPA/average, which satisfies criterion C. The response stays grounded in the provided materials because neither the LinkedIn profile nor the personal summary mentions any average/grade information. It is clear, brief, in Hebrew, first person, and professional."
+  "feedback": "The answer passes all four criteria. Neither the LinkedIn profile nor the personal summary gives a GPA or any grades; they mention only the in-progress BSc in Computer Science at Reichman University, expected June 2027. The answer says explicitly that this information is missing and does not guess, so it meets C and directly answers the question (B). It contains no unsupported claims (A) and is a short, clear, first-person answer in Hebrew with no untranslated English terms (D)."
  },
  {
   "case": "off-topic",
   "expected": "reject (B)",
   "question": "מה עשית בצבא?",
   "history": [],
-  "candidate_answer": "אני סטודנט למדעי המחשב ב־Reichman University.",
-  "evaluator_model": "gpt-5.4-2026-03-05",
+  "candidate_answer": "אני סטודנט למדעי המחשב באוניברסיטת רייכמן.",
+  "evaluator_model": "claude-opus-5-5",
   "is_acceptable": false,
-  "feedback": "Fails B and D. The user asked \"מה עשית בצבא?\" but the answer talks about being a computer science student, which does not address the military-service question. The sources clearly state relevant military details: he served five years in the IDF as a Logistics Officer, held four roles across field units and HQ, led teams, prepared data-driven briefings for senior commanders, and served as Operations Officer at the Logistics Command HQ during the Iron Swords war. Fix by answering in Hebrew, first person, briefly summarizing those army roles instead of the university status."
+  "feedback": "Fails B. The user asked what I did in the army. The answer only says I study Computer Science at Reichman University and ignores the question. The sources contain plenty of relevant information, so there is no basis for omitting it. Rewrite the answer in first-person Hebrew to cover: five years of service in צה״ל as קצין לוגיסטיקה (August 2019 – July 2024); four roles in יחידות שטח and מטה (operations and training); תדריכים מבוססי נתונים for מפקדים בכירים; leading teams under pressure; תוכניות אימונים and הקצאת משאבים; serving as קמב״ץ at מפקדת קצין הלוגיסטיקה הראשי during מלחמת חרבות ברזל; and receiving הצטיינות three times, including a ציון לשבח from a תת־אלוף. Keep it concise and use the glossary terms."
  },
  {
   "case": "follow-up",
@@ -50,12 +50,12 @@
    },
    {
     "role": "assistant",
-    "content": "שירתתי כקצין לוגיסטיקה ב־IDF."
+    "content": "שירתתי כקצין לוגיסטיקה בצה״ל."
    }
   ],
   "candidate_answer": "שירתתי חמש שנים, מאוגוסט 2019 עד יולי 2024.",
-  "evaluator_model": "gpt-5.4-2026-03-05",
+  "evaluator_model": "claude-opus-5-5",
   "is_acceptable": true,
-  "feedback": "The answer is grounded in the sources: both the LinkedIn profile and personal summary state that Nir served in the IDF as a Logistics Officer from August 2019 to July 2024, totaling five years. It directly answers the follow-up question about duration, stays in Hebrew and first person, and is concise and clear."
+  "feedback": "The answer is acceptable. A: The five-year duration and the dates August 2019 – July 2024 match the LinkedIn experience entry (\"August 2019 - July 2024 (5 years)\") and the personal summary (\"five years in the IDF as a Logistics Officer (2019–2024)\"). B: It correctly reads the follow-up as asking about the length of the military service discussed in the previous turn. C: The sources contain the needed information, so no gap needed to be flagged. D: It is concise, written in first person, entirely in Hebrew, and has no untranslated terms."
  }
 ]

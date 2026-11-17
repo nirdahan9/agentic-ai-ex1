@@ -1,38 +1,50 @@
 [
  {
   "question": "ספר לי על הניסיון הצבאי שלך",
-  "answer": "שירתתי 5 שנים בצה״ל כ־Logistics Officer, בין אוגוסט 2019 ליולי 2024. במהלך השירות מילאתי 4 תפקידים ביחידות שטח ובמטה, כולל תפקיד של Operations Officer ב־Logistics Command HQ במהלך מלחמת חרבות ברזל.  \nבמסגרת התפקיד עבדתי בסביבות לחוצות, הובלתי צוותים, הכנתי תדריכים מבוססי נתונים למפקדים בכירים, ותכננתי והוצאתי לפועל תוכניות אימון והקצאת משאבים. בנוסף, קיבלתי 3 הוקרות על מצוינות, כולל ציון לשבח מאלוף־משנה.",
-  "is_acceptable": false,
-  "feedback": "Fails criterion A. Most of the answer is grounded in the sources: 5 years in the IDF from August 2019 to July 2024, 4 roles across field units and HQ, service as Operations Officer at the Logistics Command HQ during the Iron Swords war, leading teams, data-driven briefings, and planning training/resource allocation are all supported by LinkedIn and the personal summary. However, the last claim is incorrect: the sources say he was recognized 3 times, including a citation from a Brigadier General, not from a Lieutenant Colonel (\"אלוף-משנה\"). Practical fix: replace that rank with \"תא\"ל\"/\"Brigadier General\" or remove the specific rank. The answer otherwise addresses the question and is clear, in Hebrew, first person, and concise."
+  "answer": "שירתתי חמש שנים בצה״ל כקצין לוגיסטיקה, בין אוגוסט 2019 ליולי 2024. במהלך השירות מילאתי 4 תפקידים ביחידות שטח ובמטה, הובלתי צוותים בתנאי לחץ, ותמכתי בקצינים בכירים באמצעות תדריכים מבוססי נתונים ותכנון מבצעי.  \n\nבמלחמת חרבות ברזל שימשתי כקמב״ץ במפקדת קצין הלוגיסטיקה הראשי, שם תיאמתי תוכניות בין כמה גורמים וקידמתי סדרי עדיפויות במהירות. קיבלתי הצטיינות 3 פעמים, כולל ציון לשבח מתת־אלוף.",
+  "actor_model": "gpt-5.4-mini-2026-03-17",
+  "evaluator_model": "claude-opus-5-5",
+  "is_acceptable": true,
+  "feedback": "The answer meets all four criteria. A: Every claim is supported by the LinkedIn experience section and the personal summary. These include five years as an IDF Logistics Officer (Aug 2019–Jul 2024), 4 roles across field units and HQ, leading teams under pressure, data-driven briefings and operational planning for senior commanders, serving as Operations Officer at the Logistics Command HQ during the Iron Swords war, and being recognized for excellence 3 times, including a Brigadier General citation. B: It directly answers the question about military experience. C: Not applicable, since the sources cover the topic. D: It is clear, concise, first-person, entirely in Hebrew and uses the glossary terms (קמב״ץ, מפקדת קצין הלוגיסטיקה הראשי, ציון לשבח, תת־אלוף). One minor note: the glossary form for 'senior commanders' is 'מפקדים בכירים' rather than 'קצינים בכירים', but the meaning is preserved."
  },
  {
   "question": "אילו שפות תכנות וכלים אתה מכיר?",
-  "answer": "אני עובד עם Java, Python, C ו-TypeScript, וגם עם SQL ו-Node.js. אני עובד בסביבות Linux ומשתמש ב-Git; בנוסף, יש לי ניסיון ב-Software Development, ולפי הפרופיל שלי גם בסיס טוב ב-Data Structures, Algorithms ו-Machine Learning.",
+  "answer": "אני עובד עם Java, Python, C, TypeScript, SQL ו-Node.js, ובסביבות Linux, עם שימוש ב-Git. בנוסף, יש לי ניסיון גם ב- QA, כולל בדיקות ידניות ואוטומטיות.",
+  "actor_model": "gpt-5.4-mini-2026-03-17",
+  "evaluator_model": "claude-opus-5-5",
   "is_acceptable": true,
-  "feedback": "Acceptable. The answer is grounded in the LinkedIn About section and personal summary, which explicitly mention Java, Python, C, TypeScript, SQL, Node.js, Linux environments, and Git, as well as strong foundations in Data Structures, Algorithms, and Machine Learning. It directly answers the user's question about programming languages and tools, stays in Hebrew and first person, and remains concise and professional."
+  "feedback": "Criterion A is met. The listed languages and tools (Java, Python, C, TypeScript, SQL, Node.js, Linux environments, Git) match the LinkedIn About section and the personal summary. The QA experience with manual and automated testing matches the Via.AI role in both sources. Criteria B and C are met: the answer directly addresses the question about programming languages and tools. Criterion D is met: the answer is short, in first person and in Hebrew, and it uses glossary forms ('בסביבות Linux', 'בדיקות ידניות ואוטומטיות'). It keeps in English only terms from the 'Keep in English' list. A minor stray space in 'ב- QA' is not significant."
  },
  {
   "question": "ספר לי על DerbyUp",
-  "answer": "DerbyUp הוא פרויקט של פלטפורמת חיזוי כדורגל חברתית, שעליו עבדתי במהלך השנה האחרונה. לפי מה שכתבתי, כמה מהחברות הגדולות בישראל אימצו אותה כפלטפורמת ההימור/ניבוי הרשמית שלהן למונדיאל.  \nאם תרצה, אני יכול גם לספר מה היה התפקיד שלי בפרויקט או איך הוא עבד מבחינה טכנית — אבל אין לי כרגע פירוט נוסף במקורות מעבר לזה.",
+  "answer": "DerbyUp היא פלטפורמה חברתית לניחושי כדורגל שעבדתי עליה במהלך השנה האחרונה. לפי המקורות, חלק מהחברות הגדולות בישראל אימצו אותה כפלטפורמת תחרות ניחושי המונדיאל הרשמית שלהן.  \n\nאם תרצה, אני יכול גם לספר איך תרמתי לפרויקט הזה בפועל.",
+  "actor_model": "gpt-5.4-mini-2026-03-17",
+  "evaluator_model": "claude-opus-5-5",
   "is_acceptable": false,
-  "feedback": "Fails A and D. The answer adds an unsupported detail by calling DerbyUp \"the official betting/prediction platform\" (\"פלטפורמת ההימור/ניבוי הרשמית\"); the sources mention a social football prediction platform adopted as the official World Cup prediction competition platform, but not betting/gambling. Remove any reference to betting and stay closer to the source wording. It is otherwise grounded and acknowledges missing technical details, but the phrasing should remain concise and source-faithful."
+  "feedback": "The core facts are grounded (A): DerbyUp as a social football prediction platform worked on over the last year, adopted by some of Israel's largest companies as their official World Cup prediction competition, matches both sources. It also answers the question (B). Two problems need fixing. (1) D: the phrase \"לפי המקורות\" breaks the first-person persona, because Nir would not cite 'sources' about his own project. Remove it and state the fact directly, e.g. \"כמה מהחברות הגדולות בישראל אימצו אותה כפלטפורמה הרשמית של תחרות ניחושי המונדיאל שלהן\". (2) A/C: the closing offer \"אני יכול גם לספר איך תרמתי לפרויקט הזה בפועל\" promises details the sources don't contain, since they don't describe my specific role or contribution to DerbyUp. Remove this offer. Instead, say briefly that the sources contain no further details about my exact role or the technologies used in the project, or point to GitHub (github.com/nirdahan9) for the code."
  },
  {
   "question": "מה אתה לומד ואיפה?",
-  "answer": "אני לומד Computer Science ב־Reichman University, במסגרת B.Sc. שצפויה להסתיים ביוני 2027. אני בשנת הלימודים השלישית שלי.",
-  "is_acceptable": true,
-  "feedback": "Acceptable. The answer directly addresses the question about what and where Nir studies. Its claims are fully supported by the sources: both the LinkedIn profile and personal summary state that Nir is a third-year Computer Science student at Reichman University, pursuing a B.Sc. expected in June 2027. The answer is clear, concise, in Hebrew, first person, and professionally phrased."
+  "answer": "אני לומד לומד לתואר ראשון במדעי המחשב באוניברסיטת רייכמן, ואני סטודנט בשנה השלישית. לפי המקורות, הלימודים שלי התחילו באוקטובר 2024 והם צפויים להסתיים ביוני 2027.",
+  "actor_model": "gpt-5.4-mini-2026-03-17",
+  "evaluator_model": "claude-opus-5-5",
+  "is_acceptable": false,
+  "feedback": "Criteria A, B and C are met. The facts are supported by the sources: a B.Sc. in Computer Science at Reichman University, third-year student, and October 2024 to June 2027 dates (LinkedIn Education section and personal summary). The answer fails D on two points. First, the phrase \"אני לומד לומד לתואר ראשון\" repeats a word; change it to \"אני לומד לתואר ראשון\". Second, \"לפי המקורות\" breaks the first-person voice of ניר דהן, since Nir would not cite sources about his own studies. Remove it and state the dates directly, for example \"התחלתי באוקטובר 2024 ואני צפוי לסיים ביוני 2027\"."
  },
  {
   "question": "מה GroupShield?",
-  "answer": "GroupShield הוא בוט שבניתי שמנטר התנהגות ושפה לא הולמת בקבוצות. מעבר לזה, אין לי במקורות פרטים נוספים על היכולות המדויקות שלו או איך הוא ממומש.",
+  "answer": "GroupShield הוא בוט שבניתי שמנטר התנהגות ושפה לא הולמת בקבוצות.  \nלפי המקורות, זהו אחד מהפרויקטים האישיים שלי, אבל אין בהם פירוט נוסף על האופן שבו הוא עובד או באילו פלטפורמות הוא פועל.",
+  "actor_model": "gpt-5.4-mini-2026-03-17",
+  "evaluator_model": "claude-opus-5-5",
   "is_acceptable": true,
-  "feedback": "The answer is grounded in the personal summary, which explicitly says: 'GroupShield: a bot I built that monitors behavior and inappropriate language in groups.' It directly answers the user's question, stays in Hebrew and first person, and correctly handles missing details by stating that the sources do not provide more information about its implementation or exact capabilities."
+  "feedback": "The answer is grounded in personal_summary.txt, which describes GroupShield as \"a bot I built that monitors behavior and inappropriate language in groups\" and lists it under \"My projects.\" It adds no unsupported details (A). It directly answers what GroupShield is (B). It correctly notes that the sources do not explain how the bot works or which platforms it runs on (C). The answer is short, entirely in Hebrew and written in the first person. It uses the glossary terms בוט and שפה לא הולמת, and keeps GroupShield in English as allowed (D). The phrase \"לפי המקורות\" is slightly meta for a first-person persona, but it does not breach the criteria."
  },
  {
   "question": "איזה סוג עבודה אתה מחפש?",
-  "answer": "אני מחפש עבודה בפיתוח תוכנה או ב‑AI. אני לומד Computer Science ב‑Reichman University, עובד כיום כ‑QA Engineer ב‑Via.AI, ומתעניין במיוחד ב‑AI וב‑AI agents.",
+  "answer": "אני מחפש משרה בפיתוח תוכנה או בתחום הבינה המלאכותית. אני במיוחד מעוניין בתפקידים שבהם אפשר לבנות תוכנה אמינה, לעבוד על בעיות מורכבות, ולהתפתח כחלק מצוות פיתוח חזק.",
+  "actor_model": "gpt-5.4-mini-2026-03-17",
+  "evaluator_model": "claude-opus-5-5",
   "is_acceptable": true,
-  "feedback": "The answer is grounded in the sources: the personal summary explicitly says Nir is looking for a job in software development or AI, studies Computer Science at Reichman University, works as a QA Engineer at Via.AI, and is especially interested in AI and AI agents. It directly answers the user's question, stays concise, is in Hebrew and first person, and uses a professional friendly tone."
+  "feedback": "The core claim, seeking a role in software development or AI, comes directly from the personal summary (\"I'm looking for a job in software development or in AI\"). The preferences for building reliable software and solving complex problems also come from that summary. Growing as part of a strong team paraphrases the LinkedIn About section (\"growing as a software engineer through impactful teams\"). The answer addresses the question directly and adds no unsupported facts. It is short, in the first person and written entirely in Hebrew, with correct glossary terms (פיתוח תוכנה, בינה מלאכותית)."
  }
 ]
