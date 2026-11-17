@@ -50,15 +50,32 @@ def respond(message: str, gradio_history: list[dict], scenario_id: str) -> str:
     return outcome.reply
 
 
-demo = gr.ChatInterface(
-    fn=respond,
-    chatbot=gr.Chatbot(rtl=True, height=520, placeholder=f"שאלו אותי על הלימודים, הניסיון, המיומנויות והפרויקטים של {PERSON_NAME}"),
-    textbox=gr.Textbox(placeholder="כתבו שאלה...", rtl=True, submit_btn="שליחה"),
-    additional_inputs=[gr.Textbox(value="manual", label="מזהה תרחיש (נרשם ביומן הבדיקה)", rtl=True)],
-    additional_inputs_accordion=gr.Accordion("הגדרות בדיקה", open=False),
-    title=f"צ׳אט אישי – {PERSON_NAME}",
-    description="הצ׳אט עונה על בסיס פרופיל LinkedIn וסיכום אישי בלבד. כל תשובה נבדקת על ידי מעריך לפני שהיא מוצגת.",
-)
+# Right-to-left layout for the whole Hebrew page: header, description, chat bubbles,
+# inputs, accordion and footer. English words inside Hebrew text stay in place.
+RTL_CSS = """
+.gradio-container, .gradio-container * { direction: rtl; }
+.gradio-container .prose, .gradio-container p, .gradio-container h1,
+.gradio-container label, .gradio-container .message, .gradio-container textarea,
+.gradio-container input { text-align: right; }
+.gradio-container code, .gradio-container pre { direction: ltr; text-align: left; }
+"""
+RTL_JS = "() => { document.documentElement.setAttribute('dir', 'rtl'); document.documentElement.setAttribute('lang', 'he'); }"
+
+
+def build_demo(chatbot_value: list[dict] | None = None) -> gr.ChatInterface:
+    return gr.ChatInterface(
+        fn=respond,
+        chatbot=gr.Chatbot(value=chatbot_value, label="שיחה", show_label=False, rtl=True, height=520,
+                           placeholder=f"שאלו אותי על הלימודים, הניסיון, המיומנויות והפרויקטים של {PERSON_NAME}"),
+        textbox=gr.Textbox(placeholder="כתבו שאלה...", rtl=True, submit_btn="שליחה"),
+        additional_inputs=[gr.Textbox(value="manual", label="מזהה תרחיש (נרשם ביומן הבדיקה)", rtl=True)],
+        additional_inputs_accordion=gr.Accordion("הגדרות בדיקה", open=False),
+        title=f"צ׳אט אישי – {PERSON_NAME}",
+        description="הצ׳אט עונה על בסיס פרופיל LinkedIn וסיכום אישי בלבד. כל תשובה נבדקת על ידי מעריך לפני שהיא מוצגת.",
+    )
+
+
+demo = build_demo()
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(css=RTL_CSS, js=RTL_JS)
